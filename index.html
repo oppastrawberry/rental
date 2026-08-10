@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppa Strawberry Rental - Sewa Moto Cameron Highlands</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        strawberry: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                        },
+                        highland: {
+                            50: '#f0fdf4',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-strawberry {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+        }
+        .gradient-dark {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        }
+        .strawberry-shadow {
+            box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-strawberry-500 selection:text-white">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-strawberry-700 text-white text-xs sm:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-4">
+                <span><i class="fa-solid fa-location-dot mr-1 text-strawberry-200"></i> Cameron Highlands, Pahang</span>
+                <span class="hidden md:inline">•</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-shield-halved mr-1 text-strawberry-200"></i> Moto Terjaga & Diselenggara Baik</span>
+            </div>
+            <div class="flex items-center gap-3 font-semibold">
+                <span>Hubungi Kami:</span>
+                <a href="https://wa.me/60195769906" target="_blank" class="hover:underline flex items-center gap-1">
+                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> 019-576 9906
+                </a>
+                <span>|</span>
+                <a href="https://wa.me/60133607013" target="_blank" class="hover:underline flex items-center gap-1">
+                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> 013-360 7013
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center group">
+                    <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-200">
+                </a>
+
+                <!-- Navigation Links -->
+                <div class="hidden lg:flex items-center gap-8 font-medium text-slate-600">
+                    <a href="#perks" class="hover:text-strawberry-600 transition-colors">Keistimewaan</a>
+                    <a href="#fleet" class="hover:text-strawberry-600 transition-colors">Pilihan Moto & Harga</a>
+                    <a href="#attractions" class="hover:text-strawberry-600 transition-colors">Tempat Menarik</a>
+                    <a href="#faq" class="hover:text-strawberry-600 transition-colors">Soalan Lazim</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="flex items-center gap-3">
+                    <a href="#booking" class="bg-strawberry-600 hover:bg-strawberry-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-strawberry-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Tempah Sekarang</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-strawberry-50/60 via-slate-50 to-white pt-10 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-strawberry-100 text-strawberry-800 font-semibold text-sm">
+                        <span>🍓 Ride, Explore, Enjoy Cameron Highlands</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
+                        Terokai Cameron Highlands Dengan <span class="text-strawberry-600">Sewa Moto Mudah</span> & Selesa!
+                    </h1>
+
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Elak kesesakan jalan raya Cameron Highlands! Dapatkan pengalaman bercuti yang tenang, angin segar, dan kenangan manis bersama Oppa Strawberry Rental.
+                    </p>
+
+                    <!-- Main Features Pills -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center lg:items-start">
+                            <span class="text-2xl mb-1">⛽</span>
+                            <span class="text-xs font-bold text-slate-800">Minyak Penuh</span>
+                            <span class="text-[11px] text-slate-500">Terus Jalan</span>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center lg:items-start">
+                            <span class="text-2xl mb-1">🌧️</span>
+                            <span class="text-xs font-bold text-slate-800">Baju Hujan</span>
+                            <span class="text-[11px] text-slate-500">Disediakan Free</span>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center lg:items-start">
+                            <span class="text-2xl mb-1">🪖</span>
+                            <span class="text-xs font-bold text-slate-800">Helm Lengkap</span>
+                            <span class="text-[11px] text-slate-500">Dewasa & Kanak2</span>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center lg:items-start">
+                            <span class="text-2xl mb-1">📦</span>
+                            <span class="text-xs font-bold text-slate-800">Box Helmet</span>
+                            <span class="text-[11px] text-slate-500">Simpan Barang</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                        <a href="#booking" class="bg-strawberry-600 hover:bg-strawberry-700 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-strawberry-600/30 text-center transition-all hover:scale-105 flex items-center justify-center gap-3 text-lg">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            <span>Buka Borang Tempahan</span>
+                        </a>
+                        <a href="#fleet" class="bg-white hover:bg-slate-100 text-slate-800 font-bold py-4 px-8 rounded-2xl border border-slate-200 shadow-sm text-center transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-motorcycle text-strawberry-600"></i>
+                            <span>Lihat Senarai Moto</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-2 text-xs text-slate-500 flex items-center justify-center lg:justify-start gap-4">
+                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Tanpa Deposit Tersembunyi</span>
+                        <span><i class="fa-solid fa-check text-emerald-500 mr-1"></i> Proses Pantas</span>
+                    </div>
+                </div>
+
+                <!-- Right Hero Flyer Card Visual -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md bg-white rounded-3xl p-6 shadow-2xl border border-strawberry-100">
+                        <div class="absolute -top-3 -right-3 bg-strawberry-600 text-white text-xs font-extrabold px-4 py-1.5 rounded-full shadow-md">
+                            RIDE MORE ♡ WORRY LESS
+                        </div>
+
+                        <div class="bg-gradient-to-br from-amber-50 to-rose-50 rounded-2xl p-4 border border-amber-200/60 mb-5 text-center flex justify-center">
+                            <img src="logo1_2.jpeg" alt="Oppa Strawberry Rental" class="w-full max-w-[280px] h-auto object-contain rounded-lg mx-auto">
+                        </div>
+
+                        <!-- Highlights Box -->
+                        <div class="space-y-3 mb-6 text-sm">
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl">
+                                <div class="w-8 h-8 rounded-lg bg-strawberry-100 text-strawberry-600 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-800">Sewa Mudah & Pantas</p>
+                                    <p class="text-xs text-slate-500">Isi borang WhatsApp & terus ambil moto</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-wrench"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-800">Moto Terjaga & Selamat</p>
+                                    <p class="text-xs text-slate-500">Keadaan mantap & diselenggara khas naik bukit</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl">
+                                <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-face-smile"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-800">Kenangan & Pengalaman Terbaik</p>
+                                    <p class="text-xs text-slate-500">Oppa Strawberry, Your Ride to Sweet Memories ♡</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Call-Out Phone Numbers -->
+                        <div class="bg-slate-900 text-white rounded-2xl p-4 text-center">
+                            <p class="text-xs text-slate-400 uppercase tracking-widest font-semibold mb-1">Talian Tempahan WhatsApp</p>
+                            <div class="flex justify-center gap-4 font-bold text-lg text-emerald-400">
+                                <a href="https://wa.me/60195769906" target="_blank" class="hover:underline flex items-center gap-1">
+                                    <i class="fa-brands fa-whatsapp"></i> 0195769906
+                                </a>
+                                <span>/</span>
+                                <a href="https://wa.me/60133607013" target="_blank" class="hover:underline flex items-center gap-1">
+                                    <i class="fa-brands fa-whatsapp"></i> 0133607013
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Included Perks / Features Section -->
+    <section id="perks" class="py-16 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-strawberry-600 uppercase tracking-widest">Semua Pakej Termasuk</h2>
+                <p class="text-3xl font-extrabold text-slate-900 mt-2">Kelengkapan Lengkap Untuk Perjalanan Anda</p>
+                <p class="text-slate-600 mt-2">Kami sediakan segalanya supaya anda boleh fokus menikmati keindahan Cameron Highlands!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Perk 1 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-strawberry-200 hover:shadow-md transition-all group">
+                    <div class="w-14 h-14 bg-strawberry-100 text-strawberry-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gas-pump"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Minyak Penuh (Full Tank)</h3>
+                    <p class="text-slate-600 text-sm">Ambil moto terus boleh jalan! Tak perlu risau nak cari stesen minyak awal-awal.</p>
+                </div>
+
+                <!-- Perk 2 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-strawberry-200 hover:shadow-md transition-all group">
+                    <div class="w-14 h-14 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-cloud-showers-heavy"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Baju Hujan Disediakan</h3>
+                    <p class="text-slate-600 text-sm">Cuaca bukit tidak menentu? Baju hujan berkualiti disediakan percuma untuk penunggang & pembonceng.</p>
+                </div>
+
+                <!-- Perk 3 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-strawberry-200 hover:shadow-md transition-all group">
+                    <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Helm Dewasa & Kanak-Kanak</h3>
+                    <p class="text-slate-600 text-sm">Keselamatan sekeluarga diutamakan! Helmet bersaiz dewasa dan kanak-kanak disediakan bersih.</p>
+                </div>
+
+                <!-- Perk 4 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-strawberry-200 hover:shadow-md transition-all group">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-box-archive"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Box Helmet Belakang</h3>
+                    <p class="text-slate-600 text-sm">Kotak simpanan helmet disediakan di belakang moto untuk menyimpan beg dan cenderahati strawberry anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scooter Fleet & Pricing Section -->
+    <section id="fleet" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold text-strawberry-600 uppercase tracking-widest">Pilihan Motorsikal</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Armada Moto & Kadar Sewaan</h2>
+                <p class="text-slate-600 mt-2">Pilih scooter yang sesuai dengan bajet dan gaya penungangan anda di Cameron Highlands.</p>
+            </div>
+
+            <!-- Fleet Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Bike 1: Avantiz -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="bg-slate-100 p-6 text-center relative">
+                            <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Jimat & Ringan</span>
+                            <!-- Image Scooter Illustration -->
+                            <div class="h-40 flex items-center justify-center">
+                                <img src="avantiz.jpg" alt="Yamaha Avantiz" class="w-full h-full object-contain">
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-black text-slate-900">AVANTIZ</h3>
+                                <span class="text-xs font-bold px-2.5 py-1 bg-strawberry-100 text-strawberry-700 rounded-full">Yamaha</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">Pilihan popular untuk pasangan, lincah dan senang dipandu di selekor bukit.</p>
+
+                            <div class="space-y-2 text-xs text-slate-600 mb-6">
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kapasiti Enjin:</span>
+                                    <span class="font-bold text-slate-800">125 CC Automatic</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Penggunaan Minyak:</span>
+                                    <span class="font-bold text-emerald-600">Sangat Penjimatan</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kelengkapan:</span>
+                                    <span class="font-bold text-slate-800">Box & Helmet Included</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <span class="text-xs text-slate-500 font-medium">Harga Sewaan:</span>
+                            <div>
+                                <span class="text-2xl font-black text-strawberry-600">RM 50</span>
+                                <span class="text-xs text-slate-500">/ hari</span>
+                            </div>
+                        </div>
+                        <button onclick="selectBike('Avantiz', 50)" class="w-full bg-slate-900 hover:bg-strawberry-600 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            <span>Pilih Avantiz</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bike 2: Ego Gear -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="bg-slate-100 p-6 text-center relative">
+                            <span class="absolute top-4 left-4 bg-sky-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Selesa & Modern</span>
+                            <div class="h-40 flex items-center justify-center">
+                                <img src="gear.jpg" alt="Yamaha Ego Gear" class="w-full h-full object-contain">
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-black text-slate-900">EGO GEAR</h3>
+                                <span class="text-xs font-bold px-2.5 py-1 bg-strawberry-100 text-strawberry-700 rounded-full">Yamaha</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">Rekaan moden dengan pemanduan yang sangat lancar dan tapak kaki luas.</p>
+
+                            <div class="space-y-2 text-xs text-slate-600 mb-6">
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kapasiti Enjin:</span>
+                                    <span class="font-bold text-slate-800">125 CC Smart Motor</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Penggunaan Minyak:</span>
+                                    <span class="font-bold text-emerald-600">Jimat & Cekap</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kelengkapan:</span>
+                                    <span class="font-bold text-slate-800">Box & Helmet Included</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <span class="text-xs text-slate-500 font-medium">Harga Sewaan:</span>
+                            <div>
+                                <span class="text-2xl font-black text-strawberry-600">RM 55</span>
+                                <span class="text-xs text-slate-500">/ hari</span>
+                            </div>
+                        </div>
+                        <button onclick="selectBike('Ego Gear', 55)" class="w-full bg-slate-900 hover:bg-strawberry-600 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            <span>Pilih Ego Gear</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bike 3: Vario 160 CC -->
+                <div class="bg-white rounded-3xl overflow-hidden border-2 border-strawberry-500 shadow-lg hover:shadow-2xl transition-all flex flex-col justify-between relative">
+                    <div class="absolute top-0 right-0 bg-strawberry-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                        Pilihan Ramai ⭐
+                    </div>
+                    <div>
+                        <div class="bg-strawberry-50 p-6 text-center relative">
+                            <span class="absolute top-4 left-4 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Power Buat Bukit</span>
+                            <div class="h-40 flex items-center justify-center">
+                                <img src="vario.jpg" alt="Honda Vario 160 CC" class="w-full h-full object-contain mix-blend-multiply">
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-black text-slate-900">VARIO 160 CC</h3>
+                                <span class="text-xs font-bold px-2.5 py-1 bg-red-100 text-red-700 rounded-full">Honda</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">Prestasi padu 160cc! Sangat berkuasa mendaki jalan curam Cameron Highlands berdua.</p>
+
+                            <div class="space-y-2 text-xs text-slate-600 mb-6">
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kapasiti Enjin:</span>
+                                    <span class="font-bold text-slate-800">160 CC Liquid Cooled</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kuasa Pendakian:</span>
+                                    <span class="font-bold text-strawberry-600">Sangat Mantap (Tanjak)</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kelengkapan:</span>
+                                    <span class="font-bold text-slate-800">Box & Helmet Included</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <span class="text-xs text-slate-500 font-medium">Harga Sewaan:</span>
+                            <div>
+                                <span class="text-2xl font-black text-strawberry-600">RM 70</span>
+                                <span class="text-xs text-slate-500">/ hari</span>
+                            </div>
+                        </div>
+                        <button onclick="selectBike('Vario 160 CC', 70)" class="w-full bg-strawberry-600 hover:bg-strawberry-700 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-md">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            <span>Pilih Vario 160</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bike 4: NMAX 155 CC -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="bg-slate-100 p-6 text-center relative">
+                            <span class="absolute top-4 left-4 bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Premium Comfort</span>
+                            <div class="h-40 flex items-center justify-center">
+                                <img src="NMAX 155 CC.jpg" alt="Yamaha NMAX 155 CC" class="w-full h-full object-contain mix-blend-multiply">
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-black text-slate-900">NMAX 155 CC</h3>
+                                <span class="text-xs font-bold px-2.5 py-1 bg-strawberry-100 text-strawberry-700 rounded-full">Yamaha</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">Maxi scooter paling selesa dengan tempat duduk luas dan pemanduan stabil.</p>
+
+                            <div class="space-y-2 text-xs text-slate-600 mb-6">
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kapasiti Enjin:</span>
+                                    <span class="font-bold text-slate-800">155 CC VVA Engine</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Keselesaan:</span>
+                                    <span class="font-bold text-purple-600">Sangat Selesa & Stabil</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Kelengkapan:</span>
+                                    <span class="font-bold text-slate-800">Box & Helmet Included</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0">
+                        <div class="flex items-baseline justify-between mb-4">
+                            <span class="text-xs text-slate-500 font-medium">Harga Sewaan:</span>
+                            <div>
+                                <span class="text-2xl font-black text-strawberry-600">RM 80</span>
+                                <span class="text-xs text-slate-500">/ hari</span>
+                            </div>
+                        </div>
+                        <button onclick="selectBike('NMAX 155 CC', 80)" class="w-full bg-slate-900 hover:bg-strawberry-600 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            <span>Pilih NMAX 155</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Booking Engine Section -->
+    <section id="booking" class="py-20 bg-gradient-to-b from-white to-strawberry-50/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl border border-strawberry-100 overflow-hidden">
+                
+                <!-- Form Header -->
+                <div class="bg-gradient-to-r from-strawberry-700 to-strawberry-600 text-white p-6 sm:p-8 text-center relative">
+                    <div class="bg-white rounded-2xl p-3 mb-4 mx-auto w-full max-w-[280px] shadow-md">
+                        <img src="logo1_3.jpeg" alt="Oppa Strawberry Rental" class="w-full h-auto object-contain rounded-lg">
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold">Borang Tempahan Moto Oppa Strawberry</h2>
+                    <p class="text-strawberry-100 text-sm mt-1">Sila isi maklumat di bawah. Sistem akan menghasilkan mesej tempahan WhatsApp secara automatik!</p>
+                </div>
+
+                <!-- Form Content -->
+                <form id="orderForm" onsubmit="handleFormSubmit(event)" class="p-6 sm:p-8 space-y-6">
+
+                    <!-- Scooter Choice -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">1. Pilih Model Moto *</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="scooterModel" value="Avantiz" data-price="50" class="peer hidden" checked onchange="updatePriceCalculation()">
+                                <div class="p-3 border-2 border-slate-200 peer-checked:border-strawberry-600 peer-checked:bg-strawberry-50 rounded-2xl text-center transition-all">
+                                    <div class="font-bold text-slate-900 text-sm">Avantiz</div>
+                                    <div class="text-xs text-strawberry-600 font-semibold">RM 50/hari</div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="scooterModel" value="Ego Gear" data-price="55" class="peer hidden" onchange="updatePriceCalculation()">
+                                <div class="p-3 border-2 border-slate-200 peer-checked:border-strawberry-600 peer-checked:bg-strawberry-50 rounded-2xl text-center transition-all">
+                                    <div class="font-bold text-slate-900 text-sm">Ego Gear</div>
+                                    <div class="text-xs text-strawberry-600 font-semibold">RM 55/hari</div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="scooterModel" value="Vario 160 CC" data-price="70" class="peer hidden" onchange="updatePriceCalculation()">
+                                <div class="p-3 border-2 border-slate-200 peer-checked:border-strawberry-600 peer-checked:bg-strawberry-50 rounded-2xl text-center transition-all">
+                                    <div class="font-bold text-slate-900 text-sm">Vario 160</div>
+                                    <div class="text-xs text-strawberry-600 font-semibold">RM 70/hari</div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="scooterModel" value="NMAX 155 CC" data-price="80" class="peer hidden" onchange="updatePriceCalculation()">
+                                <div class="p-3 border-2 border-slate-200 peer-checked:border-strawberry-600 peer-checked:bg-strawberry-50 rounded-2xl text-center transition-all">
+                                    <div class="font-bold text-slate-900 text-sm">NMAX 155</div>
+                                    <div class="text-xs text-strawberry-600 font-semibold">RM 80/hari</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dates & Duration -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Tarikh Mula Sewa *</label>
+                            <input type="date" id="startDate" required onchange="updatePriceCalculation()" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-strawberry-500 focus:outline-none text-slate-800 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Masa Ambil Moto *</label>
+                            <select id="pickupTime" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-strawberry-500 focus:outline-none text-slate-800 text-sm">
+                                <option value="08:00 AM">08:00 AM</option>
+                                <option value="09:00 AM" selected>09:00 AM</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Days Count -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Tempoh Sewaan (Hari) *</label>
+                            <div class="flex items-center gap-3">
+                                <button type="button" onclick="adjustDays(-1)" class="w-11 h-11 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-slate-700 text-lg flex items-center justify-center">-</button>
+                                <input type="number" id="rentalDays" min="1" max="14" value="1" readonly class="w-full text-center py-3 border border-slate-200 rounded-xl font-bold text-slate-900 text-base">
+                                <button type="button" onclick="adjustDays(1)" class="w-11 h-11 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-slate-700 text-lg flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Lokasi Serahan / Pickup *</label>
+                            <select id="pickupLocation" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-strawberry-500 focus:outline-none text-slate-800 text-sm">
+                                <option value="Tanah Rata (Pickup Point Main HQ)">Tanah Rata (HQ Oppa Strawberry)</option>
+                                <option value="Brinchang Town">Brinchang Town</option>
+                                <option value="Kea Farm Area">Kea Farm Area</option>
+                                <option value="Hotel / Homestay Delivery">Hantar ke Hotel / Homestay (Nyatakan di bawah)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Helmets Breakdown -->
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-3">
+                        <span class="block text-xs font-bold text-slate-700 uppercase">Perkhidmatan Helmet Percuma Disediakan</span>
+                        <div class="grid grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <label class="block font-medium text-slate-600 mb-1">Helmet Dewasa (Max 2):</label>
+                                <select id="adultHelmets" class="w-full p-2.5 bg-white border border-slate-200 rounded-lg">
+                                    <option value="1 Helmet Dewasa">1 Helmet Dewasa</option>
+                                    <option value="2 Helmet Dewasa" selected>2 Helmet Dewasa</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-medium text-slate-600 mb-1">Helmet Kanak-Kanak (Jika Ada):</label>
+                                <select id="kidsHelmets" class="w-full p-2.5 bg-white border border-slate-200 rounded-lg">
+                                    <option value="Tiada">Tiada</option>
+                                    <option value="1 Helmet Kanak-Kanak">1 Helmet Kanak-Kanak</option>
+                                    <option value="2 Helmet Kanak-Kanak">2 Helmet Kanak-Kanak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Info -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Nama Penuh Anda *</label>
+                            <input type="text" id="custName" placeholder="Cth: Ahmad Safwan" required class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-strawberry-500 focus:outline-none text-slate-800 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Nombor Telefon WhatsApp *</label>
+                            <input type="tel" id="custPhone" placeholder="Cth: 012-3456789" required class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-strawberry-500 focus:outline-none text-slate-800 text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Catatan Tambahan (Nama Hotel / Pertanyaan)</label>
+                        <textarea id="custNotes" rows="2" placeholder="Cth: Saya menginap di Century Pines Resort Tanah Rata..." class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-strawberry-500 focus:outline-none text-slate-800 text-sm"></textarea>
+                    </div>
+
+                    <!-- Select Target WhatsApp Number -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Pilih Nombor WhatsApp Tempahan *</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="targetWhatsapp" value="60195769906" class="peer hidden" checked>
+                                <div class="p-3 border border-slate-200 peer-checked:border-emerald-600 peer-checked:bg-emerald-50 rounded-xl text-center">
+                                    <p class="font-bold text-slate-900 text-xs">Nombor Utama</p>
+                                    <p class="text-emerald-600 font-bold text-sm"><i class="fa-brands fa-whatsapp"></i> 019-576 9906</p>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="targetWhatsapp" value="60133607013" class="peer hidden">
+                                <div class="p-3 border border-slate-200 peer-checked:border-emerald-600 peer-checked:bg-emerald-50 rounded-xl text-center">
+                                    <p class="font-bold text-slate-900 text-xs">Nombor Talian 2</p>
+                                    <p class="text-emerald-600 font-bold text-sm"><i class="fa-brands fa-whatsapp"></i> 013-360 7013</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Calculation Total Banner -->
+                    <div class="bg-slate-900 text-white rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div>
+                            <span class="text-xs text-slate-400 block uppercase">Anggaran Jumlah Sewaan:</span>
+                            <div class="flex items-baseline gap-2">
+                                <span id="totalPriceDisplay" class="text-3xl font-black text-amber-400">RM 50</span>
+                                <span id="calcDetailsDisplay" class="text-xs text-slate-300">(RM 50 x 1 Hari)</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-4 px-8 rounded-xl shadow-lg transition-all flex items-center justify-center gap-3 text-base">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            <span>Hantar Tempahan WhatsApp</span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractions & Scenic Ride Section -->
+    <section id="attractions" class="py-16 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold text-strawberry-600 uppercase tracking-widest">Terokai Tanpa Kesesakan</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Destinasi Menarik Naik Moto di Cameron</h2>
+                <p class="text-slate-600 mt-2">Menunggang scooter memberikan anda kebebasan untuk sampai ke lokasi popular tanpa tersangkut dalam jam panjang!</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Spot 1 -->
+                <div class="rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden group">
+                    <div class="h-48 bg-emerald-800 p-6 flex flex-col justify-end text-white relative bg-cover bg-center" style="background-image: url('palas.jpg');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-slate-900/20"></div>
+                        <span class="relative z-10 text-xs font-bold text-emerald-300 uppercase drop-shadow-md">Pemandangan Indah</span>
+                        <h3 class="relative z-10 text-xl font-bold drop-shadow-md">Ladang Teh BOH Sungei Palas</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm">Laluan berlekuk-lekuk yang sangat tenang dan cantik dengan moto. Selesai menikmati teh segar dan pemandangan hijau.</p>
+                    </div>
+                </div>
+
+                <!-- Spot 2 -->
+                <div class="rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden group">
+                    <div class="h-48 bg-rose-800 p-6 flex flex-col justify-end text-white relative bg-cover bg-center" style="background-image: url('kea.jpg');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-slate-900/20"></div>
+                        <span class="relative z-10 text-xs font-bold text-strawberry-300 uppercase drop-shadow-md">Pasar & Buah Segar</span>
+                        <h3 class="relative z-10 text-xl font-bold drop-shadow-md">Kea Farm & Taman Strawberry</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm">Kawasan membeli-belah sayur dan strawberry paling sibuk. Dengan scooter Oppa, parking terus di tepi tanpa pening kepala!</p>
+                    </div>
+                </div>
+
+                <!-- Spot 3 -->
+                <div class="rounded-3xl bg-slate-50 border border-slate-100 overflow-hidden group">
+                    <div class="h-48 bg-slate-800 p-6 flex flex-col justify-end text-white relative bg-cover bg-center" style="background-image: url('mosse.jpg');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 to-transparent"></div>
+                        <span class="relative z-10 text-xs font-bold text-sky-300 uppercase drop-shadow-md">Alam Semula Jadi</span>
+                        <h3 class="relative z-10 text-xl font-bold drop-shadow-md">Mossy Forest & Hutan Lumut</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-600 text-sm">Rasai udara sejuk segar Cameron Highlands pada waktu pagi. Ride awal pagi untuk menikmati suasana berkabus!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-strawberry-600 uppercase tracking-widest">Ada Soalan?</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-2">Soalan Lazim (FAQ)</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <details class="group bg-white rounded-2xl p-5 border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-800">
+                        <span>Apakah dokumen yang diperlukan untuk menyewa moto?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-slate-600 text-sm leading-relaxed">
+                        Anda hanya perlu mengemukakan Lesen Memandu Motorsikal yang sah (Kelas B / B2) serta Kad Pengenalan (IC) atau Pasport untuk pengesahan identiti.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details class="group bg-white rounded-2xl p-5 border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-800">
+                        <span>Adakah minyak motorsikal sudah disediakan?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-slate-600 text-sm leading-relaxed">
+                        Ya! Setiap sewaan dari Oppa Strawberry Rental diserahkan dengan Minyak Penuh (Full Tank). Anda digalakkan memulangkan moto dengan paras minyak yang bersesuaian.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="group bg-white rounded-2xl p-5 border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-800">
+                        <span>Bagaimana jika cuaca hujan di Cameron Highlands?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-slate-600 text-sm leading-relaxed">
+                        Jangan risau! Kami menyediakan Baju Hujan percuma untuk setiap sewaan. Moto juga dilengkapi dengan box belakang untuk menyimpan barangan anda supaya tidak basah.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details class="group bg-white rounded-2xl p-5 border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-800">
+                        <span>Adakah helmet untuk kanak-kanak ada disediakan?</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                        </span>
+                    </summary>
+                    <p class="mt-3 text-slate-600 text-sm leading-relaxed">
+                        Ya, kami mempunyai bekalan helmet bersaiz kanak-kanak dan dewasa. Sila maklumkan bilangan helmet kanak-kanak yang diperlukan semasa borang tempahan disi.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-slate-800">
+                
+                <div>
+                    <div class="mb-4 inline-block bg-white p-1.5 rounded-xl">
+                        <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-14 w-auto object-contain">
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Pilihan Utama Sewa Moto di Cameron Highlands. Ride, Explore, Enjoy. Menjadikan percutian anda lebih mudah dan penuh kenangan manis.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Talian Tempahan WhatsApp</h4>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                            <a href="https://wa.me/60195769906" class="hover:text-white transition-colors">019-576 9906 (En. Oppa)</a>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                            <a href="https://wa.me/60133607013" class="hover:text-white transition-colors">013-360 7013 (Talian 2)</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-3">Lokasi Operasi</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-2">
+                        <i class="fa-solid fa-location-dot text-strawberry-500 mr-1"></i> Cameron Highlands, Pahang, Malaysia
+                    </p>
+                    <p class="text-xs text-slate-500">Masa Operasi: 8:00 AM - 9:00 PM (Setiap Hari)</p>
+                </div>
+
+            </div>
+
+            <div class="text-center text-xs text-slate-500">
+                <p>&copy; 2026 Oppa Strawberry Rental. Hak Cipta Terelihara. Oppa Strawberry, Your Ride to Sweet Memories ♡</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Sticky WhatsApp Quick Button -->
+    <a href="https://wa.me/60195769906" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full p-4 shadow-2xl flex items-center justify-center gap-2 transition-transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="hidden sm:inline font-bold text-sm pr-1">Chat WhatsApp</span>
+    </a>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Set default minimum date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('startDate');
+            if (dateInput) {
+                dateInput.value = today;
+                dateInput.min = today;
+            }
+            updatePriceCalculation();
+        });
+
+        // Function when clicking "Pilih Moto" from Fleet section
+        function selectBike(modelName, price) {
+            const radioButtons = document.getElementsByName('scooterModel');
+            for (let radio of radioButtons) {
+                if (radio.value === modelName) {
+                    radio.checked = true;
+                    break;
+                }
+            }
+            updatePriceCalculation();
+            // Smooth scroll to booking section
+            const bookingSection = document.getElementById('booking');
+            if (bookingSection) {
+                bookingSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Adjust rental days
+        function adjustDays(change) {
+            const daysInput = document.getElementById('rentalDays');
+            let currentVal = parseInt(daysInput.value) || 1;
+            currentVal += change;
+            if (currentVal < 1) currentVal = 1;
+            if (currentVal > 14) currentVal = 14;
+            daysInput.value = currentVal;
+            updatePriceCalculation();
+        }
+
+        // Calculate Total Price
+        function updatePriceCalculation() {
+            const selectedRadio = document.querySelector('input[name="scooterModel"]:checked');
+            const pricePerDay = selectedRadio ? parseFloat(selectedRadio.getAttribute('data-price')) : 50;
+            const daysInput = document.getElementById('rentalDays');
+            const days = parseInt(daysInput.value) || 1;
+
+            const total = pricePerDay * days;
+
+            document.getElementById('totalPriceDisplay').innerText = `RM ${total}`;
+            document.getElementById('calcDetailsDisplay').innerText = `(RM ${pricePerDay} x ${days} Hari)`;
+        }
+
+        // Form Submit Handler -> Redirects to WhatsApp
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const selectedRadio = document.querySelector('input[name="scooterModel"]:checked');
+            const modelName = selectedRadio ? selectedRadio.value : 'Avantiz';
+            const pricePerDay = selectedRadio ? selectedRadio.getAttribute('data-price') : '50';
+            
+            const startDate = document.getElementById('startDate').value;
+            const pickupTime = document.getElementById('pickupTime').value;
+            const days = document.getElementById('rentalDays').value;
+            const pickupLocation = document.getElementById('pickupLocation').value;
+            
+            const adultHelmets = document.getElementById('adultHelmets').value;
+            const kidsHelmets = document.getElementById('kidsHelmets').value;
+
+            const custName = document.getElementById('custName').value.trim();
+            const custPhone = document.getElementById('custPhone').value.trim();
+            const custNotes = document.getElementById('custNotes').value.trim() || 'Tiada';
+
+            const targetWaRadio = document.querySelector('input[name="targetWhatsapp"]:checked');
+            const targetNumber = targetWaRadio ? targetWaRadio.value : '60195769906';
+
+            const totalAmount = parseInt(pricePerDay) * parseInt(days);
+
+            // Construct formatted WhatsApp message
+            const message = 
+`Salam Oppa Strawberry Rental! Saya nak buat tempahan sewa moto 🍓🛵
+
+*MAKLUMAT TEMPAHAN:*
+• *Nama:* ${custName}
+• *No. Telefon:* ${custPhone}
+• *Model Moto:* ${modelName} (RM ${pricePerDay}/hari)
+• *Tarikh Mula:* ${startDate} (${pickupTime})
+• *Tempoh Sewaan:* ${days} Hari
+• *Lokasi Pickup:* ${pickupLocation}
+• *Helmet Dewasa:* ${adultHelmets}
+• *Helmet Kanak2:* ${kidsHelmets}
+• *Anggaran Jumlah:* RM ${totalAmount}
+
+*Catatan:* ${custNotes}
+
+Mohon sahkan ketersediaan moto. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${targetNumber}?text=${encodedMessage}`;
+
+            // Open WhatsApp link
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
