@@ -701,7 +701,7 @@
                             <select id="pickupLocation" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-strawberry-500 focus:outline-none text-slate-800 text-sm">
                                 <option value="Tanah Rata (Percuma Deliver/HQ)">Tanah Rata (Percuma Penghantaran / HQ)</option>
                                 <option value="Brinchang Town (Percuma Deliver)">Brinchang Town (Percuma Penghantaran)</option>
-                                <option value="Kea Farm Area">Kea Farm Area</option>
+                                <option value="Kea Farm Area (tambahan upah runner RM15)">Kea Farm Area (Tambahan upah runner RM15)</option>
                                 <option value="Hotel / Homestay Delivery">Hantar ke Hotel / Homestay (Nyatakan di bawah)</option>
                             </select>
                         </div>
@@ -855,10 +855,11 @@
 
             <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
                 <p class="flex items-center gap-2 flex-wrap">
-                    <span>Hak Cipta CreativDev</span>
-                    <a href="https://noblenoobco.github.io/creativdev/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700/80 text-slate-300" title="CreativDev">
-                        <img src="https://noblenoobco.github.io/creativdev/logo.png" onerror="this.onerror=null; this.src='https://placehold.co/24x24/e11d48/ffffff?text=CD'" alt="CreativDev Logo" class="w-4 h-4 object-contain rounded">
-                        <span class="text-[11px] font-semibold text-strawberry-400">CreativDev</span>
+                    <span>Hak Cipta</span>
+                    <!-- EDITED LOGO LINK HERE -->
+                    <a href="https://noblenoobco.github.io/creativdev/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700/80 text-slate-300" title="Your Company Name">
+                        <img src="CreativDev.png" onerror="this.onerror=null; this.src='https://placehold.co/24x24/e11d48/ffffff?text=LOGO'" alt="Your Logo" class="w-4 h-4 object-contain rounded">
+                        <span class="text-[11px] font-semibold text-strawberry-400">Your Brand</span>
                     </a>
                 </p>
                 <button onclick="openAdminModal()" class="hover:text-strawberry-400 transition-colors flex items-center gap-1 opacity-75 hover:opacity-100">
@@ -1807,93 +1808,23 @@ Mohon sahkan ketersediaan moto. Terima kasih!`;
                         ${b.pickupLocation || ''}
                     </td>
                     <td class="p-3">
-                        <div class="font-black text-amber-400">RM ${b.finalTotal || 0}</div>
+                        <div class="font-black text-white">RM ${b.finalTotal || '0'}</div>
                     </td>
                     <td class="p-3">
-                        <span class="px-2 py-1 border rounded text-[10px] font-bold ${badgeClass}">${b.status || 'Pending'}</span>
+                        <span class="px-2 py-1 rounded text-[10px] font-bold ${badgeClass}">${b.status || 'Pending'}</span>
                     </td>
                     <td class="p-3 text-right">
-                        <select onchange="updateBookingStatus('${b.id}', this.value)" class="bg-slate-900 border border-slate-700 text-slate-300 text-[10px] rounded px-2 py-1 focus:outline-none">
-                            <option value="Pending" ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
-                            <option value="Disahkan" ${b.status === 'Disahkan' ? 'selected' : ''}>Disahkan</option>
-                            <option value="Selesai" ${b.status === 'Selesai' ? 'selected' : ''}>Selesai</option>
-                            <option value="Batal" ${b.status === 'Batal' ? 'selected' : ''}>Batal</option>
-                        </select>
+                        <!-- Action buttons reserved -->
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
-
-        window.updateBookingStatus = async function(id, newStatus) {
-            try {
-                if (db) {
-                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'bookings', id);
-                    await updateDoc(docRef, { status: newStatus });
-                    showToast("Status tempahan dikemaskini.");
-                } else {
-                    const idx = currentBookings.findIndex(x => x.id === id);
-                    if (idx > -1) {
-                        currentBookings[idx].status = newStatus;
-                        filterBookingsTable();
-                    }
-                }
-            } catch (err) {
-                console.error("Error updating status:", err);
-                showToast("Gagal kemaskini status", true);
-            }
-        };
-
-        window.printFilteredBookings = function() {
-            const printArea = document.getElementById('printableContent');
-            if (!printArea) return;
-
-            let html = `
-                <div style="font-family: sans-serif; padding: 20px;">
-                    <h2 style="text-align: center; border-bottom: 2px solid #e11d48; padding-bottom: 10px;">Laporan Tempahan Oppa Strawberry Rental</h2>
-                    <p style="text-align: right; font-size: 12px; color: #666;">Tarikh Cetakan: ${new Date().toLocaleString('ms-MY')}</p>
-                    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 12px; text-align: left;">
-                        <thead>
-                            <tr style="background-color: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
-                                <th style="padding: 10px; border: 1px solid #e2e8f0;">Tarikh/Masa</th>
-                                <th style="padding: 10px; border: 1px solid #e2e8f0;">Pelanggan</th>
-                                <th style="padding: 10px; border: 1px solid #e2e8f0;">Model Moto</th>
-                                <th style="padding: 10px; border: 1px solid #e2e8f0;">Lokasi</th>
-                                <th style="padding: 10px; border: 1px solid #e2e8f0;">Jumlah</th>
-                                <th style="padding: 10px; border: 1px solid #e2e8f0;">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
-
-            filteredBookingsList.forEach(b => {
-                html += `
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 10px; border: 1px solid #e2e8f0;">${b.startDate}<br><small style="color: #64748b;">${b.pickupTime}</small></td>
-                        <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>${b.custName}</strong><br><small>${b.custPhone}</small></td>
-                        <td style="padding: 10px; border: 1px solid #e2e8f0;">${b.modelName}<br><small style="color: #64748b;">${b.selectedDuration}</small></td>
-                        <td style="padding: 10px; border: 1px solid #e2e8f0;">${b.pickupLocation}</td>
-                        <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>RM ${b.finalTotal}</strong></td>
-                        <td style="padding: 10px; border: 1px solid #e2e8f0;">${b.status || 'Pending'}</td>
-                    </tr>
-                `;
-            });
-
-            html += `
-                        </tbody>
-                    </table>
-                </div>
-            `;
-
-            printArea.innerHTML = html;
-            window.print();
-        };
-
-        // Initialize Firebase Backend and Render content when document loads!
+        
+        // Initialize the logic when document loads
         document.addEventListener('DOMContentLoaded', () => {
             initFirebaseBackend();
         });
-
     </script>
 </body>
 </html>
