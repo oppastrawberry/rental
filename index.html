@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oppa Strawberry Rental - Sewa Moto Cameron Highlands</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    
+    <!-- Preconnect to Critical Origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.gstatic.com"> <!-- Preconnect for Firebase -->
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- FontAwesome CDN - Deferred loading if possible via JS, or keep as standard if critical for icons above fold -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- Tailwind CSS CDN - Async Loading -->
+    <script src="https://cdn.tailwindcss.com" async></script>
     
     <script>
+        // Tailwind config remains inline for the CDN
         tailwind.config = {
             theme: {
                 extend: {
@@ -78,7 +87,7 @@
         <span id="toastMsg" class="text-sm font-semibold">Mesej Notifikasi</span>
     </div>
 
-    <!-- ARCHITECT ADMIN CONTROL OVERLAY (Appears when App is Disabled) -->
+    <!-- ARCHITECT ADMIN CONTROL OVERLAY -->
     <div id="disabledOverlay" class="hidden fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 text-center">
         <!-- Architect Admin Login Button on Top Right -->
         <button onclick="openAdminModal()" class="absolute top-6 right-6 p-3 bg-slate-900 hover:bg-strawberry-600/30 text-strawberry-400 hover:text-white rounded-2xl border border-slate-800 hover:border-strawberry-500/50 transition-all group flex items-center gap-2 shadow-2xl" title="Architect Admin Login">
@@ -125,7 +134,7 @@
                 </button>
             </div>
 
-            <!-- PIN Form (If not authenticated) -->
+            <!-- PIN Form -->
             <div id="adminAuthContainer" class="p-8 max-w-sm mx-auto w-full text-center space-y-4">
                 <p class="text-sm text-slate-300">Masukkan Kunci PIN Architect untuk mengakses panel pengurusan.</p>
                 <form id="adminAuthForm" onsubmit="handleAdminAuth(event)" class="space-y-4">
@@ -140,7 +149,7 @@
                 </form>
             </div>
 
-            <!-- CMS Controls (Revealed after successful PIN entry) -->
+            <!-- CMS Controls -->
             <div id="adminControlPanel" class="hidden flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
                 
                 <!-- CMS Navigation Tabs -->
@@ -155,7 +164,7 @@
                     <button onclick="switchCmstab('pin')" id="tabBtn-pin" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap">Tukar PIN</button>
                 </div>
 
-                <!-- TAB 0: REKOD TEMPAHAN PELANGGAN (MONITOR & PRINT SPACE) -->
+                <!-- TAB 0: REKOD TEMPAHAN PELANGGAN -->
                 <div id="tab-bookings" class="cmsTabContent space-y-5">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-slate-800/80 border border-slate-700/60 p-4 rounded-2xl">
                         <div>
@@ -371,7 +380,7 @@
         </div>
     </div>
 
-    <!-- PRINTABLE CONTAINER (HIDDEN UNTIL PRINT ACTION) -->
+    <!-- PRINTABLE CONTAINER -->
     <div id="printableArea" class="hidden">
         <div id="printableContent"></div>
     </div>
@@ -401,9 +410,9 @@
     <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Brand Logo -->
+                <!-- Brand Logo (Optimized image assumed to be provided by user or handled server-side, added width/height) -->
                 <a href="#" class="flex items-center group">
-                    <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-200">
+                    <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" width="150" height="64" class="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-200">
                 </a>
 
                 <!-- Navigation Links -->
@@ -494,7 +503,8 @@
                         </div>
 
                         <div class="bg-gradient-to-br from-amber-50 to-rose-50 rounded-2xl p-4 border border-amber-200/60 mb-5 text-center flex justify-center">
-                            <img id="heroFlyerImg" src="logo1_2.jpeg" alt="Oppa Strawberry Rental" class="w-full max-w-[280px] h-auto object-contain rounded-lg mx-auto">
+                            <!-- Assumed hero image, added loading=lazy though it's above fold just in case, but usually better eager. Kept default (eager). -->
+                            <img id="heroFlyerImg" src="logo1_2.jpeg" alt="Oppa Strawberry Rental" width="280" height="280" class="w-full max-w-[280px] h-auto object-contain rounded-lg mx-auto">
                         </div>
 
                         <!-- Highlights Box -->
@@ -634,7 +644,7 @@
 
             <!-- Dynamic Fleet Grid -->
             <div id="fleetContainer" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Dynamically populated from Firebase Firestore -->
+                <!-- Dynamically populated from Firebase Firestore, images will be lazy loaded -->
             </div>
         </div>
     </section>
@@ -647,7 +657,8 @@
                 <!-- Form Header -->
                 <div class="bg-gradient-to-r from-strawberry-700 to-strawberry-600 text-white p-6 sm:p-8 text-center relative">
                     <div class="bg-white rounded-2xl p-3 mb-4 mx-auto w-full max-w-[280px] shadow-md">
-                        <img src="logo1_3.jpeg" alt="Oppa Strawberry Rental" class="w-full h-auto object-contain rounded-lg">
+                        <!-- Added lazy loading and dimension attributes -->
+                        <img src="logo1_3.jpeg" alt="Oppa Strawberry Rental" loading="lazy" width="280" height="150" class="w-full h-auto object-contain rounded-lg">
                     </div>
                     <h2 class="text-2xl sm:text-3xl font-extrabold">Borang Tempahan Moto Oppa Strawberry</h2>
                     <p class="text-strawberry-100 text-sm mt-1">Sila isi maklumat di bawah. Tempahan akan direkod dan membuka WhatsApp secara automatik!</p>
@@ -796,7 +807,7 @@
             </div>
 
             <div id="attractionsContainer" class="grid md:grid-cols-3 gap-6">
-                <!-- Dynamic Attractions -->
+                <!-- Dynamic Attractions, images will be lazy loaded -->
             </div>
         </div>
     </section>
@@ -822,7 +833,8 @@
                 
                 <div>
                     <div class="mb-4 inline-block bg-white p-1.5 rounded-xl">
-                        <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-14 w-auto object-contain">
+                        <!-- Added lazy loading -->
+                        <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" loading="lazy" width="100" height="56" class="h-12 sm:h-14 w-auto object-contain">
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed">
                         Pilihan Utama Sewa Moto di Cameron Highlands. Ride, Explore, Enjoy. Menjadikan percutian anda lebih mudah dan penuh kenangan manis.
@@ -856,9 +868,8 @@
             <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
                 <p class="flex items-center gap-2 flex-wrap">
                     <span>Hak Cipta</span>
-                    <!-- EDITED LOGO LINK HERE -->
                     <a href="https://noblenoobco.github.io/creativdev/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700/80 text-slate-300" title="CreativDev">
-                        <img src="CreativDev.webp" onerror="this.onerror=null; this.src='https://placehold.co/24x24/e11d48/ffffff?text=LOGO'" alt="Your Logo" class="w-4 h-4 object-contain rounded">
+                        <img src="CreativDev.webp" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/24x24/e11d48/ffffff?text=LOGO'" alt="Your Logo" class="w-4 h-4 object-contain rounded">
                         <span class="text-[11px] font-semibold text-strawberry-400">CreativDev</span>
                     </a>
                 </p>
@@ -876,7 +887,7 @@
         <span class="hidden sm:inline font-bold text-sm pr-1">Chat WhatsApp</span>
     </a>
 
-    <!-- FIREBASE & APPLICATION LOGIC -->
+    <!-- FIREBASE & APPLICATION LOGIC - Kept at bottom, added type="module" previously which implies defer inherently for modern browsers -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -1134,6 +1145,7 @@
                 const initialDuration = "24 JAM";
                 const initialPrice = defaultRates[initialDuration] || Object.values(defaultRates)[0] || 80;
 
+                // Added loading="lazy" to dynamic images here
                 const cardHtml = `
                     <div class="bg-white rounded-3xl overflow-hidden ${borderStyle} hover:shadow-xl transition-all flex flex-col justify-between relative">
                         ${bike.isPopular ? '<div class="absolute top-0 right-0 bg-strawberry-600 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-wider">Pilihan Ramai ⭐</div>' : ''}
@@ -1141,7 +1153,7 @@
                             <div class="bg-slate-100 p-6 text-center relative">
                                 <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${bike.tag || 'Sewa Easy'}</span>
                                 <div class="h-40 flex items-center justify-center">
-                                    <img src="${bike.image}" alt="${bike.name}" class="w-full h-full object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/400x300/f8fafc/e11d48?text=${encodeURIComponent(bike.name)}'">
+                                    <img src="${bike.image}" alt="${bike.name}" loading="lazy" width="300" height="160" class="w-full h-full object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/400x300/f8fafc/e11d48?text=${encodeURIComponent(bike.name)}'">
                                 </div>
                             </div>
 
@@ -1258,10 +1270,11 @@
             if (!container) return;
             container.innerHTML = '';
             attractions.forEach(item => {
+                // Added loading="lazy" for attraction images
                 container.innerHTML += `
                     <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-all group">
                         <div class="h-48 overflow-hidden relative bg-slate-200">
-                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/f8fafc/e11d48?text=${encodeURIComponent(item.name)}'">
+                            <img src="${item.image}" alt="${item.name}" loading="lazy" width="400" height="200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/f8fafc/e11d48?text=${encodeURIComponent(item.name)}'">
                             <span class="absolute top-3 left-3 bg-strawberry-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">${item.tag}</span>
                         </div>
                         <div class="p-5">
@@ -1789,42 +1802,111 @@ Mohon sahkan ketersediaan moto. Terima kasih!`;
 
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-800/40 transition-colors';
+                
                 tr.innerHTML = `
                     <td class="p-3">
-                        <div class="font-bold text-white">${b.startDate || 'N/A'}</div>
-                        <div class="text-[10px] text-slate-400">${b.pickupTime || ''}</div>
+                        <div class="font-bold text-white">${b.createdAt?.split(',')[0] || '-'}</div>
+                        <div class="text-[10px] text-slate-500">${b.createdAt?.split(',')[1] || ''}</div>
                     </td>
                     <td class="p-3">
-                        <div class="font-bold text-white">${b.custName || 'Tanpa Nama'}</div>
-                        <a href="https://wa.me/${b.custPhone?.replace(/\D/g,'')}" target="_blank" class="text-[10px] text-emerald-400 hover:underline flex items-center gap-1">
-                            <i class="fa-brands fa-whatsapp"></i> ${b.custPhone || ''}
-                        </a>
+                        <div class="font-bold text-white truncate max-w-[120px]" title="${b.custName}">${b.custName}</div>
+                        <div class="text-[10px] text-slate-400 flex items-center gap-1">
+                            <i class="fa-brands fa-whatsapp text-emerald-500"></i> ${b.custPhone}
+                        </div>
+                    </td>
+                    <td class="p-3 text-xs font-bold text-slate-300">
+                        ${b.modelName}
                     </td>
                     <td class="p-3">
-                        <div class="font-semibold text-strawberry-400">${b.modelName || ''}</div>
-                        <div class="text-[10px] text-slate-400">${b.selectedDuration || ''}</div>
-                    </td>
-                    <td class="p-3 max-w-[150px] truncate" title="${b.pickupLocation}">
-                        ${b.pickupLocation || ''}
+                        <div class="text-white">${b.selectedDuration}</div>
+                        <div class="text-[10px] text-slate-500 truncate max-w-[120px]" title="${b.pickupLocation}">${b.pickupLocation}</div>
                     </td>
                     <td class="p-3">
-                        <div class="font-black text-white">RM ${b.finalTotal || '0'}</div>
+                        <div class="font-black text-emerald-400">RM ${b.finalTotal}</div>
+                        ${b.discountApplied ? `<div class="text-[9px] text-amber-400">Diskaun RM10</div>` : ''}
                     </td>
                     <td class="p-3">
-                        <span class="px-2 py-1 rounded text-[10px] font-bold ${badgeClass}">${b.status || 'Pending'}</span>
+                        <span class="px-2 py-1 rounded-md text-[10px] font-bold border ${badgeClass}">${b.status || 'Pending'}</span>
                     </td>
                     <td class="p-3 text-right">
-                        <!-- Action buttons reserved -->
+                        <select onchange="updateBookingStatus('${b.id}', this.value)" class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-[10px] text-slate-300 focus:outline-none">
+                            <option value="Pending" ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Disahkan" ${b.status === 'Disahkan' ? 'selected' : ''}>Disahkan</option>
+                            <option value="Selesai" ${b.status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+                            <option value="Batal" ${b.status === 'Batal' ? 'selected' : ''}>Batal</option>
+                        </select>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
-        
-        // Initialize the logic when document loads
+
+        window.updateBookingStatus = async function(bookingId, newStatus) {
+            try {
+                if (db) {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'bookings', bookingId);
+                    await updateDoc(docRef, { status: newStatus });
+                    showToast(`Status ditukar kepada ${newStatus}`);
+                }
+            } catch (err) {
+                console.error("Error updating status:", err);
+                showToast("Gagal menukar status!", true);
+            }
+        };
+
+        window.printFilteredBookings = function() {
+            const printArea = document.getElementById('printableContent');
+            if (!printArea) return;
+
+            let html = `
+                <div style="font-family: sans-serif; color: #333;">
+                    <div style="text-align: center; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+                        <h2>Laporan Tempahan Oppa Strawberry Rental</h2>
+                        <p>Tarikh Cetakan: ${new Date().toLocaleString('ms-MY')}</p>
+                        <p>Jumlah Rekod Dicetak: ${filteredBookingsList.length}</p>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left;">
+                        <thead>
+                            <tr style="background-color: #f8f9fa;">
+                                <th style="border: 1px solid #ddd; padding: 8px;">Tarikh / Masa</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Pelanggan</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Moto / Tempoh</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Lokasi Pickup</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Jumlah</th>
+                                <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            filteredBookingsList.forEach(b => {
+                html += `
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${b.createdAt || '-'}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${b.custName}<br>${b.custPhone}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${b.modelName}<br>${b.selectedDuration}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${b.pickupLocation}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">RM ${b.finalTotal}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">${b.status || 'Pending'}</td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            printArea.innerHTML = html;
+            window.print();
+        };
+
+        // Initialize App
         document.addEventListener('DOMContentLoaded', () => {
             initFirebaseBackend();
         });
+
     </script>
 </body>
 </html>
