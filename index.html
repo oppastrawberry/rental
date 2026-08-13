@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oppa Strawberry Rental - Sewa Moto Cameron Highlands</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    
+    <!-- Performance Optimizations: Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -67,6 +74,45 @@
             .no-print {
                 display: none !important;
             }
+        }
+        
+        /* Image Upload Styles */
+        .img-upload-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 2px dashed #475569;
+            background-color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .img-upload-container:hover {
+            border-color: #e11d48;
+            background-color: #1e293b;
+        }
+        .img-upload-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .img-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            display: none;
         }
     </style>
 </head>
@@ -149,7 +195,7 @@
                         <i class="fa-solid fa-clipboard-list"></i> Rekod Tempahan
                     </button>
                     <button onclick="switchCmstab('status')" id="tabBtn-status" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap">Status & Overlay</button>
-                    <button onclick="switchCmstab('hero')" id="tabBtn-hero" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap">Hero & Talian</button>
+                    <button onclick="switchCmstab('hero')" id="tabBtn-hero" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap">Images & Hero</button>
                     <button onclick="switchCmstab('fleet')" id="tabBtn-fleet" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap">Moto & Harga</button>
                     <button onclick="switchCmstab('faq')" id="tabBtn-faq" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap">Tempat & FAQ</button>
                     <button onclick="switchCmstab('pin')" id="tabBtn-pin" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap">Tukar PIN</button>
@@ -274,9 +320,79 @@
                     </div>
                 </div>
 
-                <!-- TAB 2: HERO SECTION & CONTACT NUMBERS -->
-                <div id="tab-hero" class="cmsTabContent space-y-4 hidden">
-                    <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider">Talian WhatsApp & Tajuk Utama</h4>
+                <!-- TAB 2: HERO SECTION, IMAGES & CONTACT NUMBERS -->
+                <div id="tab-hero" class="cmsTabContent space-y-6 hidden">
+                    
+                    <div class="space-y-4 border-b border-slate-800 pb-6">
+                        <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-image"></i> Pengurusan Gambar Utama (Upload Local)
+                        </h4>
+                        <p class="text-xs text-slate-400">Muat naik gambar untuk menggantikan gambar lalai pada laman web. Gambar akan disimpan dalam pelayar (Base64).</p>
+                        
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Logo Utama Upload -->
+                            <div class="bg-slate-800/50 p-4 rounded-2xl border border-slate-700 text-center">
+                                <label class="block text-xs font-bold text-slate-300 mb-2">Logo Utama (Navigasi)</label>
+                                <div class="img-upload-container h-32 mx-auto" onclick="document.getElementById('uploadMainLogo').click()">
+                                    <div class="text-slate-500 flex flex-col items-center">
+                                        <i class="fa-solid fa-cloud-arrow-up text-2xl mb-1"></i>
+                                        <span class="text-[10px]">Klik untuk Muat Naik</span>
+                                    </div>
+                                    <input type="file" id="uploadMainLogo" class="img-upload-input" accept="image/*" onchange="handleImageUpload(event, 'previewMainLogo', 'cmsBase64MainLogo')">
+                                    <img id="previewMainLogo" src="" alt="Preview" class="img-preview rounded-md">
+                                    <input type="hidden" id="cmsBase64MainLogo">
+                                </div>
+                                <button onclick="clearImage('previewMainLogo', 'cmsBase64MainLogo', 'uploadMainLogo')" class="mt-2 text-[10px] text-rose-400 hover:text-rose-300">Buang Gambar</button>
+                            </div>
+
+                            <!-- Gambar Flyer Hero Upload -->
+                            <div class="bg-slate-800/50 p-4 rounded-2xl border border-slate-700 text-center">
+                                <label class="block text-xs font-bold text-slate-300 mb-2">Gambar Flyer / Kad Hero</label>
+                                <div class="img-upload-container h-32 mx-auto" onclick="document.getElementById('uploadHeroFlyer').click()">
+                                    <div class="text-slate-500 flex flex-col items-center">
+                                        <i class="fa-solid fa-cloud-arrow-up text-2xl mb-1"></i>
+                                        <span class="text-[10px]">Klik untuk Muat Naik</span>
+                                    </div>
+                                    <input type="file" id="uploadHeroFlyer" class="img-upload-input" accept="image/*" onchange="handleImageUpload(event, 'previewHeroFlyer', 'cmsBase64HeroFlyer')">
+                                    <img id="previewHeroFlyer" src="" alt="Preview" class="img-preview rounded-md">
+                                    <input type="hidden" id="cmsBase64HeroFlyer">
+                                </div>
+                                <button onclick="clearImage('previewHeroFlyer', 'cmsBase64HeroFlyer', 'uploadHeroFlyer')" class="mt-2 text-[10px] text-rose-400 hover:text-rose-300">Buang Gambar</button>
+                            </div>
+
+                            <!-- Gambar Borang Tempahan Upload -->
+                            <div class="bg-slate-800/50 p-4 rounded-2xl border border-slate-700 text-center">
+                                <label class="block text-xs font-bold text-slate-300 mb-2">Gambar Borang WhatsApp</label>
+                                <div class="img-upload-container h-32 mx-auto" onclick="document.getElementById('uploadBookingImg').click()">
+                                    <div class="text-slate-500 flex flex-col items-center">
+                                        <i class="fa-solid fa-cloud-arrow-up text-2xl mb-1"></i>
+                                        <span class="text-[10px]">Klik untuk Muat Naik</span>
+                                    </div>
+                                    <input type="file" id="uploadBookingImg" class="img-upload-input" accept="image/*" onchange="handleImageUpload(event, 'previewBookingImg', 'cmsBase64BookingImg')">
+                                    <img id="previewBookingImg" src="" alt="Preview" class="img-preview rounded-md">
+                                    <input type="hidden" id="cmsBase64BookingImg">
+                                </div>
+                                <button onclick="clearImage('previewBookingImg', 'cmsBase64BookingImg', 'uploadBookingImg')" class="mt-2 text-[10px] text-rose-400 hover:text-rose-300">Buang Gambar</button>
+                            </div>
+                            
+                            <!-- Gambar Hak Cipta Upload (Footer Logo) -->
+                            <div class="bg-slate-800/50 p-4 rounded-2xl border border-slate-700 text-center">
+                                <label class="block text-xs font-bold text-slate-300 mb-2">Logo Hak Cipta (Footer)</label>
+                                <div class="img-upload-container h-32 mx-auto" onclick="document.getElementById('uploadCopyrightLogo').click()">
+                                    <div class="text-slate-500 flex flex-col items-center">
+                                        <i class="fa-solid fa-cloud-arrow-up text-2xl mb-1"></i>
+                                        <span class="text-[10px]">Klik untuk Muat Naik</span>
+                                    </div>
+                                    <input type="file" id="uploadCopyrightLogo" class="img-upload-input" accept="image/*" onchange="handleImageUpload(event, 'previewCopyrightLogo', 'cmsBase64CopyrightLogo')">
+                                    <img id="previewCopyrightLogo" src="" alt="Preview" class="img-preview rounded-md">
+                                    <input type="hidden" id="cmsBase64CopyrightLogo">
+                                </div>
+                                <button onclick="clearImage('previewCopyrightLogo', 'cmsBase64CopyrightLogo', 'uploadCopyrightLogo')" class="mt-2 text-[10px] text-rose-400 hover:text-rose-300">Buang Gambar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider pt-2">Talian WhatsApp & Tajuk Utama</h4>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-400 mb-1">Nombor WhatsApp Utama (Phone 1)</label>
@@ -302,22 +418,20 @@
                         <label class="block text-xs font-bold text-slate-400 mb-1">Sub-Tajuk / Penerangan Hero</label>
                         <textarea id="cmsHeroSubtitle" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white"></textarea>
                     </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-slate-400 mb-1">URL Gambar Flyer / Kad Utama Hero</label>
-                        <input type="text" id="cmsFlyerImg" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white">
-                    </div>
                 </div>
 
                 <!-- TAB 3: FLEET & PRICES -->
                 <div id="tab-fleet" class="cmsTabContent space-y-4 hidden">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider">Pengurusan Armada Moto & Harga</h4>
-                        <button onclick="addNewBikeToCms()" class="bg-strawberry-600 hover:bg-strawberry-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider">Pengurusan Armada Moto & Harga</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">Muat naik gambar tempatan untuk setiap motorsikal.</p>
+                        </div>
+                        <button onclick="addNewBikeToCms()" class="bg-strawberry-600 hover:bg-strawberry-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shadow-md">
                             <i class="fa-solid fa-plus mr-1"></i> Tambah Moto
                         </button>
                     </div>
-                    <div id="cmsFleetContainer" class="space-y-4">
+                    <div id="cmsFleetContainer" class="space-y-6">
                         <!-- Dynamically generated bike editor forms -->
                     </div>
                 </div>
@@ -326,17 +440,23 @@
                 <div id="tab-faq" class="cmsTabContent space-y-6 hidden">
                     <!-- Attractions -->
                     <div class="space-y-4">
-                        <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider">Sunting Tempat Menarik</h4>
-                        <div id="cmsAttractionsContainer" class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider">Sunting Tempat Menarik</h4>
+                            <button onclick="addNewAttractionToCms()" class="bg-strawberry-600 hover:bg-strawberry-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shadow-md">
+                                <i class="fa-solid fa-plus mr-1"></i> Tambah Tempat
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mb-2">Muat naik gambar tempatan untuk destinasi menarik.</p>
+                        <div id="cmsAttractionsContainer" class="space-y-4">
                             <!-- Dynamically generated attraction inputs -->
                         </div>
                     </div>
 
                     <!-- FAQs -->
-                    <div class="space-y-4 pt-4 border-t border-slate-800">
+                    <div class="space-y-4 pt-6 border-t border-slate-800">
                         <div class="flex justify-between items-center">
                             <h4 class="text-sm font-bold text-strawberry-400 uppercase tracking-wider">Sunting Soalan Lazim (FAQ)</h4>
-                            <button onclick="addNewFaqToCms()" class="bg-strawberry-600 hover:bg-strawberry-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                            <button onclick="addNewFaqToCms()" class="bg-strawberry-600 hover:bg-strawberry-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shadow-md">
                                 <i class="fa-solid fa-plus mr-1"></i> Tambah FAQ
                             </button>
                         </div>
@@ -403,7 +523,7 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Brand Logo -->
                 <a href="#" class="flex items-center group">
-                    <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-200">
+                    <img id="navLogoImg" src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-200" fetchpriority="high" decoding="async">
                 </a>
 
                 <!-- Navigation Links -->
@@ -494,7 +614,7 @@
                         </div>
 
                         <div class="bg-gradient-to-br from-amber-50 to-rose-50 rounded-2xl p-4 border border-amber-200/60 mb-5 text-center flex justify-center">
-                            <img id="heroFlyerImg" src="logo1_2.jpeg" alt="Oppa Strawberry Rental" class="w-full max-w-[280px] h-auto object-contain rounded-lg mx-auto">
+                            <img id="heroFlyerImg" src="logo1_2.jpeg" alt="Oppa Strawberry Rental" class="w-full max-w-[280px] h-auto object-contain rounded-lg mx-auto" fetchpriority="high" decoding="async">
                         </div>
 
                         <!-- Highlights Box -->
@@ -647,7 +767,7 @@
                 <!-- Form Header -->
                 <div class="bg-gradient-to-r from-strawberry-700 to-strawberry-600 text-white p-6 sm:p-8 text-center relative">
                     <div class="bg-white rounded-2xl p-3 mb-4 mx-auto w-full max-w-[280px] shadow-md">
-                        <img src="logo1_3.jpeg" alt="Oppa Strawberry Rental" class="w-full h-auto object-contain rounded-lg">
+                        <img id="formBookingImg" src="logo1_3.jpeg" alt="Oppa Strawberry Rental" loading="lazy" decoding="async" class="w-full h-auto object-contain rounded-lg">
                     </div>
                     <h2 class="text-2xl sm:text-3xl font-extrabold">Borang Tempahan Moto Oppa Strawberry</h2>
                     <p class="text-strawberry-100 text-sm mt-1">Sila isi maklumat di bawah. Tempahan akan direkod dan membuka WhatsApp secara automatik!</p>
@@ -822,7 +942,7 @@
                 
                 <div>
                     <div class="mb-4 inline-block bg-white p-1.5 rounded-xl">
-                        <img src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-14 w-auto object-contain">
+                        <img id="footerLogoImg" src="logo1.jpeg" alt="Oppa Strawberry Rental Logo" class="h-12 sm:h-14 w-auto object-contain" loading="lazy" decoding="async">
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed">
                         Pilihan Utama Sewa Moto di Cameron Highlands. Ride, Explore, Enjoy. Menjadikan percutian anda lebih mudah dan penuh kenangan manis.
@@ -856,9 +976,8 @@
             <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
                 <p class="flex items-center gap-2 flex-wrap">
                     <span>Hak Cipta</span>
-                    <!-- EDITED LOGO LINK HERE -->
                     <a href="https://noblenoobco.github.io/creativdev/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700/80 text-slate-300" title="CreativDev">
-                        <img src="CreativDev.webp" onerror="this.onerror=null; this.src='https://placehold.co/24x24/e11d48/ffffff?text=LOGO'" alt="Your Logo" class="w-4 h-4 object-contain rounded">
+                        <img id="copyrightLogoImg" src="CreativDev.webp" onerror="this.onerror=null; this.src='https://placehold.co/24x24/e11d48/ffffff?text=LOGO'" alt="Your Logo" class="w-4 h-4 object-contain rounded" loading="lazy" decoding="async">
                         <span class="text-[11px] font-semibold text-strawberry-400">CreativDev</span>
                     </a>
                 </p>
@@ -906,11 +1025,16 @@
                 msg: "Aplikasi / Laman web ini digantung atau dinyahaktifkan sementara. Sila hubungi pihak pentadbir web (Web Architect) untuk sebarang penyelesaian atau maklumat pembayaran.",
                 badge: "Status: Suspended / Pending Payment"
             },
+            images: {
+                mainLogo: "logo1.jpeg",
+                heroFlyer: "logo1_2.jpeg",
+                bookingImg: "logo1_3.jpeg",
+                copyrightLogo: "CreativDev.webp"
+            },
             hero: {
                 badge: "🍓 Ride, Explore, Enjoy Cameron Highlands",
                 title: "Terokai Cameron Highlands Dengan Sewa Moto Mudah & Selesa!",
-                subtitle: "Elak kesesakan jalan raya Cameron Highlands! Dapatkan pengalaman bercuti yang tenang, angin segar, dan kenangan manis bersama Oppa Strawberry Rental.",
-                flyerImg: "logo1_2.jpeg"
+                subtitle: "Elak kesesakan jalan raya Cameron Highlands! Dapatkan pengalaman bercuti yang tenang, angin segar, dan kenangan manis bersama Oppa Strawberry Rental."
             },
             fleet: [
                 {
@@ -920,7 +1044,7 @@
                     rates: { "12 JAM": 80, "24 JAM": 110, "36 JAM": 190, "48 JAM": 220 },
                     cc: "160 CC Keyless",
                     fuel: "Sangat Mantap (Tanjak)",
-                    image: "vario.jpg",
+                    image: "vario.jpg", // Kept local default initially
                     tag: "Power Buat Bukit",
                     isPopular: true,
                     desc: "Prestasi padu 160cc Keyless! Sangat berkuasa mendaki jalan curam Cameron Highlands berdua."
@@ -981,6 +1105,63 @@
         let db, auth;
         let isAdminAuthenticated = false;
 
+        // Image Upload Handlers for Base64 (Local save to Firestore)
+        window.handleImageUpload = function(event, previewId, base64HiddenId) {
+            const file = event.target.files[0];
+            if (file) {
+                // Resize image before saving to base64 to prevent firestore size limits
+                resizeImage(file, 800, 800, (base64) => {
+                    const previewImg = document.getElementById(previewId);
+                    previewImg.src = base64;
+                    previewImg.style.display = 'block';
+                    document.getElementById(base64HiddenId).value = base64;
+                });
+            }
+        };
+
+        window.clearImage = function(previewId, base64HiddenId, uploadInputId) {
+            const previewImg = document.getElementById(previewId);
+            previewImg.src = '';
+            previewImg.style.display = 'none';
+            document.getElementById(base64HiddenId).value = '';
+            document.getElementById(uploadInputId).value = '';
+        };
+
+        // Utility to resize images to keep firestore docs small
+        function resizeImage(file, maxWidth, maxHeight, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width = Math.round((width * maxHeight) / height);
+                            height = maxHeight;
+                        }
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.7); // compress quality
+                    callback(dataUrl);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
         // Toast Notification Function
         window.showToast = function(msg, isError = false) {
             const toast = document.getElementById('toast');
@@ -1019,6 +1200,10 @@
                 onSnapshot(docRef, (docSnap) => {
                     if (docSnap.exists()) {
                         currentSiteContent = docSnap.data();
+                        
+                        // Merge missing defaults if data structure changes
+                        if(!currentSiteContent.images) currentSiteContent.images = { ...DEFAULT_SITE_CONTENT.images };
+                        
                     } else {
                         // Seed initial default content if first run
                         setDoc(docRef, DEFAULT_SITE_CONTENT);
@@ -1068,7 +1253,25 @@
                 document.getElementById('disabledOverlayBadge').innerText = data.disabledWording.badge || "Status: Suspended";
             }
 
-            // 2. Phones
+            // 2. Global Images Setup
+            if (data.images) {
+                if (data.images.mainLogo) {
+                    document.getElementById('navLogoImg').src = data.images.mainLogo;
+                    document.getElementById('footerLogoImg').src = data.images.mainLogo;
+                }
+                if (data.images.heroFlyer) {
+                    document.getElementById('heroFlyerImg').src = data.images.heroFlyer;
+                }
+                if (data.images.bookingImg) {
+                    document.getElementById('formBookingImg').src = data.images.bookingImg;
+                }
+                if (data.images.copyrightLogo) {
+                    const crLogo = document.getElementById('copyrightLogoImg');
+                    if (crLogo) crLogo.src = data.images.copyrightLogo;
+                }
+            }
+
+            // 3. Phones
             const p1 = data.phone1 || "60195769906";
             const p2 = data.phone2 || "60133607013";
             const p1Formatted = formatPhone(p1);
@@ -1090,24 +1293,23 @@
             document.getElementById('footerPhone2Link').href = `https://wa.me/${p2}`;
             document.getElementById('floatingWaBtn').href = `https://wa.me/${p1}`;
 
-            // 3. Hero Section
+            // 4. Hero Section text
             if (data.hero) {
                 document.getElementById('heroBadge').innerText = data.hero.badge || "";
                 document.getElementById('heroTitle').innerText = data.hero.title || "";
                 document.getElementById('heroSubtitle').innerText = data.hero.subtitle || "";
-                if (data.hero.flyerImg) document.getElementById('heroFlyerImg').src = data.hero.flyerImg;
             }
 
-            // 4. Motorcycle Fleet & Prices
+            // 5. Motorcycle Fleet & Prices
             renderFleetSection(data.fleet || []);
 
-            // 5. Booking Radios & WhatsApp Targets
+            // 6. Booking Radios & WhatsApp Targets
             renderBookingOptions(data.fleet || [], p1, p2, p1Formatted, p2Formatted);
 
-            // 6. Attractions
+            // 7. Attractions
             renderAttractionsSection(data.attractions || []);
 
-            // 7. FAQs
+            // 8. FAQs
             renderFaqsSection(data.faqs || []);
 
             // Update Price Calc
@@ -1133,6 +1335,10 @@
                 const defaultRates = bike.rates || { "12 JAM": 60, "24 JAM": 80, "36 JAM": 140, "48 JAM": 160 };
                 const initialDuration = "24 JAM";
                 const initialPrice = defaultRates[initialDuration] || Object.values(defaultRates)[0] || 80;
+                
+                // Use uploaded image base64 if present, else fallback to text placeholder to prevent external fetching if local file is missing
+                const imageSrc = (bike.image && bike.image.startsWith('data:image')) ? bike.image : 
+                                 (bike.image ? bike.image : `https://placehold.co/400x300/f8fafc/e11d48?text=${encodeURIComponent(bike.name)}`);
 
                 const cardHtml = `
                     <div class="bg-white rounded-3xl overflow-hidden ${borderStyle} hover:shadow-xl transition-all flex flex-col justify-between relative">
@@ -1141,7 +1347,7 @@
                             <div class="bg-slate-100 p-6 text-center relative">
                                 <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${bike.tag || 'Sewa Easy'}</span>
                                 <div class="h-40 flex items-center justify-center">
-                                    <img src="${bike.image}" alt="${bike.name}" class="w-full h-full object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/400x300/f8fafc/e11d48?text=${encodeURIComponent(bike.name)}'">
+                                    <img src="${imageSrc}" alt="${bike.name}" loading="lazy" decoding="async" class="w-full h-full object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/400x300/f8fafc/e11d48?text=${encodeURIComponent(bike.name)}'">
                                 </div>
                             </div>
 
@@ -1258,10 +1464,12 @@
             if (!container) return;
             container.innerHTML = '';
             attractions.forEach(item => {
+                const imageSrc = (item.image && item.image.startsWith('data:image')) ? item.image : 
+                                 (item.image ? item.image : `https://placehold.co/600x400/f8fafc/e11d48?text=${encodeURIComponent(item.name)}`);
                 container.innerHTML += `
                     <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-all group">
                         <div class="h-48 overflow-hidden relative bg-slate-200">
-                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/f8fafc/e11d48?text=${encodeURIComponent(item.name)}'">
+                            <img src="${imageSrc}" alt="${item.name}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/f8fafc/e11d48?text=${encodeURIComponent(item.name)}'">
                             <span class="absolute top-3 left-3 bg-strawberry-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">${item.tag}</span>
                         </div>
                         <div class="p-5">
@@ -1483,345 +1691,566 @@ Mohon sahkan ketersediaan moto. Terima kasih!`;
                 document.getElementById('adminFooterPanel').classList.remove('hidden');
                 loadCustomerBookings();
                 populateCmsForms();
-                showToast("Pengesahan Admin Berjaya!");
             } else {
                 document.getElementById('adminAuthError').classList.remove('hidden');
             }
         };
 
         window.switchCmstab = function(tabName) {
-            const tabs = ['bookings', 'status', 'hero', 'fleet', 'faq', 'pin'];
-            tabs.forEach(t => {
-                const content = document.getElementById(`tab-${t}`);
-                const btn = document.getElementById(`tabBtn-${t}`);
-                if (content && btn) {
-                    if (t === tabName) {
-                        content.classList.remove('hidden');
+            document.querySelectorAll('.cmsTabContent').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+            const btnIds = ['bookings', 'status', 'hero', 'fleet', 'faq', 'pin'];
+            btnIds.forEach(id => {
+                const btn = document.getElementById(`tabBtn-${id}`);
+                if (btn) {
+                    if (id === tabName) {
                         btn.className = "px-4 py-2 rounded-xl bg-strawberry-600 text-white whitespace-nowrap flex items-center gap-1.5";
                     } else {
-                        content.classList.add('hidden');
-                        btn.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap flex items-center gap-1.5";
+                        btn.className = "px-4 py-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white whitespace-nowrap";
                     }
                 }
             });
-            if (tabName === 'bookings') {
-                loadCustomerBookings();
-            }
         };
 
-        window.setAppState = function(state) {
-            currentSiteContent.appStatus = state;
-            const badge = document.getElementById('cmsCurrentStatusBadge');
-            if (state === 'active') {
-                badge.className = "text-lg font-extrabold text-emerald-400";
-                badge.innerText = "AKTIF (ENABLED)";
-            } else {
-                badge.className = "text-lg font-extrabold text-rose-500";
-                badge.innerText = "DIGANTUNG (DISABLED)";
-            }
-        };
-
-        function populateCmsForms() {
+        window.populateCmsForms = function() {
+            // Status Tab
+            document.getElementById('cmsCurrentStatusBadge').innerText = currentSiteContent.appStatus === 'active' ? 'AKTIF (ENABLED)' : 'GANTUNG (DISABLED)';
+            document.getElementById('cmsCurrentStatusBadge').className = currentSiteContent.appStatus === 'active' ? 'text-lg font-extrabold text-emerald-400' : 'text-lg font-extrabold text-rose-500';
+            
             document.getElementById('cmsDisableTitle').value = currentSiteContent.disabledWording?.title || "";
             document.getElementById('cmsDisableMsg').value = currentSiteContent.disabledWording?.msg || "";
             document.getElementById('cmsDisableBadge').value = currentSiteContent.disabledWording?.badge || "";
 
+            // Hero Tab - Images
+            if (currentSiteContent.images) {
+                if (currentSiteContent.images.mainLogo) {
+                    document.getElementById('previewMainLogo').src = currentSiteContent.images.mainLogo;
+                    document.getElementById('previewMainLogo').style.display = 'block';
+                    document.getElementById('cmsBase64MainLogo').value = currentSiteContent.images.mainLogo;
+                }
+                if (currentSiteContent.images.heroFlyer) {
+                    document.getElementById('previewHeroFlyer').src = currentSiteContent.images.heroFlyer;
+                    document.getElementById('previewHeroFlyer').style.display = 'block';
+                    document.getElementById('cmsBase64HeroFlyer').value = currentSiteContent.images.heroFlyer;
+                }
+                if (currentSiteContent.images.bookingImg) {
+                    document.getElementById('previewBookingImg').src = currentSiteContent.images.bookingImg;
+                    document.getElementById('previewBookingImg').style.display = 'block';
+                    document.getElementById('cmsBase64BookingImg').value = currentSiteContent.images.bookingImg;
+                }
+                if (currentSiteContent.images.copyrightLogo) {
+                    document.getElementById('previewCopyrightLogo').src = currentSiteContent.images.copyrightLogo;
+                    document.getElementById('previewCopyrightLogo').style.display = 'block';
+                    document.getElementById('cmsBase64CopyrightLogo').value = currentSiteContent.images.copyrightLogo;
+                }
+            }
+
             document.getElementById('cmsPhone1').value = currentSiteContent.phone1 || "";
             document.getElementById('cmsPhone2').value = currentSiteContent.phone2 || "";
-
             document.getElementById('cmsHeroBadge').value = currentSiteContent.hero?.badge || "";
             document.getElementById('cmsHeroTitle').value = currentSiteContent.hero?.title || "";
             document.getElementById('cmsHeroSubtitle').value = currentSiteContent.hero?.subtitle || "";
-            document.getElementById('cmsFlyerImg').value = currentSiteContent.hero?.flyerImg || "";
 
-            renderCmsFleetForm(currentSiteContent.fleet || []);
-            renderCmsAttractionsForm(currentSiteContent.attractions || []);
-            renderCmsFaqsForm(currentSiteContent.faqs || []);
-        }
+            // Fleet Tab
+            const fleetContainer = document.getElementById('cmsFleetContainer');
+            fleetContainer.innerHTML = '';
+            (currentSiteContent.fleet || []).forEach((bike, index) => addFleetFormToCms(bike, index));
 
-        function renderCmsFleetForm(fleetList) {
+            // FAQ Tab - Attractions & FAQs
+            const attrContainer = document.getElementById('cmsAttractionsContainer');
+            attrContainer.innerHTML = '';
+            (currentSiteContent.attractions || []).forEach((attr, index) => addAttractionFormToCms(attr, index));
+
+            const faqContainer = document.getElementById('cmsFaqContainer');
+            faqContainer.innerHTML = '';
+            (currentSiteContent.faqs || []).forEach((faq, index) => addFaqFormToCms(faq, index));
+        };
+
+        window.setAppState = function(state) {
+            currentSiteContent.appStatus = state;
+            document.getElementById('cmsCurrentStatusBadge').innerText = state === 'active' ? 'AKTIF (ENABLED)' : 'GANTUNG (DISABLED)';
+            document.getElementById('cmsCurrentStatusBadge').className = state === 'active' ? 'text-lg font-extrabold text-emerald-400' : 'text-lg font-extrabold text-rose-500';
+            showToast(`Status web ditukar kepada: ${state.toUpperCase()}`);
+        };
+
+        window.addFleetFormToCms = function(bike = {}, index = Date.now()) {
             const container = document.getElementById('cmsFleetContainer');
-            container.innerHTML = '';
-            fleetList.forEach((bike, index) => {
-                const rates = bike.rates || {};
-                const html = `
-                    <div class="bg-slate-800/80 border border-slate-700 p-4 rounded-2xl space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-strawberry-400">Moto #${index + 1}: ${bike.name}</span>
-                            <button onclick="removeBikeFromCms(${index})" class="text-rose-400 hover:text-rose-300 text-xs"><i class="fa-solid fa-trash"></i> Padam</button>
+            const defaultRates = bike.rates || { "12 JAM": "", "24 JAM": "", "36 JAM": "", "48 JAM": "" };
+            
+            const html = `
+                <div class="cms-fleet-item bg-slate-800/30 p-4 rounded-xl border border-slate-700/50 relative" data-index="${index}">
+                    <button onclick="this.parentElement.remove()" class="absolute top-3 right-3 text-rose-400 hover:text-rose-300 text-xs font-bold"><i class="fa-solid fa-trash"></i> Buang</button>
+                    <div class="grid sm:grid-cols-2 gap-4 mb-3">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 mb-1">ID (Unik, huruf kecil, tiada ruang)</label>
+                            <input type="text" class="fleet-id w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${bike.id || ''}" placeholder="cth: nmax_155">
                         </div>
-                        <div class="grid sm:grid-cols-2 gap-3 text-xs">
-                            <input type="text" id="cmsBikeName_${index}" value="${bike.name}" placeholder="Nama Moto" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
-                            <input type="text" id="cmsBikeBrand_${index}" value="${bike.brand || ''}" placeholder="Jenama (Honda/Yamaha)" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
-                            <input type="text" id="cmsBikeCC_${index}" value="${bike.cc || ''}" placeholder="CC & Engine" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
-                            <input type="text" id="cmsBikeTag_${index}" value="${bike.tag || ''}" placeholder="Tagline (Cth: Keyless)" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 mb-1">Nama Moto</label>
+                            <input type="text" class="fleet-name w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${bike.name || ''}" placeholder="YAMAHA NMAX 155">
                         </div>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                            <div>
-                                <label class="text-[10px] text-slate-400">12 JAM (RM)</label>
-                                <input type="number" id="cmsRate12_${index}" value="${rates['12 JAM'] || 60}" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white">
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-3 gap-4 mb-3">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 mb-1">Jenama (Brand)</label>
+                            <input type="text" class="fleet-brand w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${bike.brand || ''}" placeholder="Yamaha / Honda">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 mb-1">Kapasiti CC</label>
+                            <input type="text" class="fleet-cc w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${bike.cc || ''}" placeholder="155 CC VVA">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 mb-1">Status Minyak / Komen</label>
+                            <input type="text" class="fleet-fuel w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${bike.fuel || ''}" placeholder="Sangat Selesa">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 mb-3">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-400 mb-1">Tagline</label>
+                            <input type="text" class="fleet-tag w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${bike.tag || ''}" placeholder="Premium Comfort">
+                        </div>
+                        <div class="flex items-center gap-2 pt-4">
+                            <input type="checkbox" class="fleet-popular" ${bike.isPopular ? 'checked' : ''}>
+                            <label class="text-xs text-slate-300">Tanda sebagai Pilihan Popular</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-[10px] font-bold text-slate-400 mb-1">Penerangan Ringkas</label>
+                        <input type="text" class="fleet-desc w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${bike.desc || ''}" placeholder="Penerangan moto...">
+                    </div>
+
+                    <!-- Gambar Moto Upload -->
+                    <div class="mb-3">
+                        <label class="block text-[10px] font-bold text-slate-400 mb-1">Gambar Moto</label>
+                        <div class="flex items-center gap-4">
+                            <div class="w-24 h-24 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center overflow-hidden">
+                                <img src="${bike.image || ''}" class="fleet-preview-img w-full h-full object-contain ${bike.image ? '' : 'hidden'}">
+                                <i class="fa-solid fa-image text-slate-600 text-2xl ${bike.image ? 'hidden' : ''}"></i>
                             </div>
-                            <div>
-                                <label class="text-[10px] text-slate-400">24 JAM (RM)</label>
-                                <input type="number" id="cmsRate24_${index}" value="${rates['24 JAM'] || 80}" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white">
-                            </div>
-                            <div>
-                                <label class="text-[10px] text-slate-400">36 JAM (RM)</label>
-                                <input type="number" id="cmsRate36_${index}" value="${rates['36 JAM'] || 140}" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white">
-                            </div>
-                            <div>
-                                <label class="text-[10px] text-slate-400">48 JAM (RM)</label>
-                                <input type="number" id="cmsRate48_${index}" value="${rates['48 JAM'] || 160}" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-white">
+                            <div class="flex-1">
+                                <input type="file" accept="image/*" onchange="handleFleetImage(event, this)" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-strawberry-50 file:text-strawberry-700 hover:file:bg-strawberry-100">
+                                <input type="hidden" class="fleet-base64" value="${bike.image || ''}">
                             </div>
                         </div>
                     </div>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
-        }
 
-        window.addNewBikeToCms = function() {
-            if (!currentSiteContent.fleet) currentSiteContent.fleet = [];
-            currentSiteContent.fleet.push({
-                id: `bike_${Date.now()}`,
-                name: "MODEL MOTO BAHARU",
-                brand: "Honda",
-                rates: { "12 JAM": 60, "24 JAM": 80, "36 JAM": 140, "48 JAM": 160 },
-                cc: "125 CC",
-                fuel: "Jimat Minyak",
-                image: "vario.jpg",
-                tag: "Sewa Selesa",
-                isPopular: false,
-                desc: "Penerangan singkat motorsikal."
-            });
-            renderCmsFleetForm(currentSiteContent.fleet);
+                    <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700">
+                        <label class="block text-[10px] font-bold text-strawberry-400 mb-2 uppercase">Kadar Harga (RM)</label>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div>
+                                <span class="text-[9px] text-slate-500 block">12 JAM</span>
+                                <input type="number" class="fleet-rate-12 w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 text-xs text-white" value="${defaultRates["12 JAM"] || ''}">
+                            </div>
+                            <div>
+                                <span class="text-[9px] text-slate-500 block">24 JAM</span>
+                                <input type="number" class="fleet-rate-24 w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 text-xs text-white" value="${defaultRates["24 JAM"] || ''}">
+                            </div>
+                            <div>
+                                <span class="text-[9px] text-slate-500 block">36 JAM</span>
+                                <input type="number" class="fleet-rate-36 w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 text-xs text-white" value="${defaultRates["36 JAM"] || ''}">
+                            </div>
+                            <div>
+                                <span class="text-[9px] text-slate-500 block">48 JAM</span>
+                                <input type="number" class="fleet-rate-48 w-full bg-slate-800 border border-slate-700 rounded px-2 py-1 text-xs text-white" value="${defaultRates["48 JAM"] || ''}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
         };
 
-        window.removeBikeFromCms = function(index) {
-            if (currentSiteContent.fleet && currentSiteContent.fleet[index]) {
-                currentSiteContent.fleet.splice(index, 1);
-                renderCmsFleetForm(currentSiteContent.fleet);
+        window.addNewBikeToCms = function() {
+            window.addFleetFormToCms();
+        };
+
+        window.handleFleetImage = function(event, inputEl) {
+            const file = event.target.files[0];
+            if (file) {
+                resizeImage(file, 600, 600, (base64) => {
+                    const container = inputEl.closest('.cms-fleet-item');
+                    const img = container.querySelector('.fleet-preview-img');
+                    const icon = container.querySelector('.fa-image');
+                    const hidden = container.querySelector('.fleet-base64');
+                    
+                    img.src = base64;
+                    img.classList.remove('hidden');
+                    icon.classList.add('hidden');
+                    hidden.value = base64;
+                });
             }
         };
 
-        function renderCmsAttractionsForm(attractions) {
+        window.addAttractionFormToCms = function(attr = {}, index = Date.now()) {
             const container = document.getElementById('cmsAttractionsContainer');
-            container.innerHTML = '';
-            attractions.forEach((item, index) => {
-                const html = `
-                    <div class="bg-slate-800/80 border border-slate-700 p-3 rounded-2xl space-y-2 text-xs">
-                        <input type="text" id="cmsAttrTitle_${index}" value="${item.name}" placeholder="Nama Tempat" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
-                        <textarea id="cmsAttrDesc_${index}" rows="2" placeholder="Penerangan" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">${item.desc}</textarea>
+            const html = `
+                <div class="cms-attr-item bg-slate-800/30 p-4 rounded-xl border border-slate-700/50 relative">
+                    <button onclick="this.parentElement.remove()" class="absolute top-3 right-3 text-rose-400 hover:text-rose-300 text-xs font-bold"><i class="fa-solid fa-trash"></i></button>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-2 pr-10">
+                        <div>
+                            <input type="text" class="attr-name w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white mb-2" value="${attr.name || ''}" placeholder="Nama Tempat">
+                            <input type="text" class="attr-tag w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${attr.tag || ''}" placeholder="Tag (cth: Pasar Pagi)">
+                        </div>
+                        <div>
+                            <textarea class="attr-desc w-full h-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" placeholder="Penerangan ringkas...">${attr.desc || ''}</textarea>
+                        </div>
                     </div>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
-        }
+                    <div class="flex items-center gap-3">
+                        <div class="w-16 h-12 bg-slate-800 rounded border border-slate-700 flex items-center justify-center overflow-hidden">
+                            <img src="${attr.image || ''}" class="attr-preview-img w-full h-full object-cover ${attr.image ? '' : 'hidden'}">
+                            <i class="fa-solid fa-image text-slate-600 ${attr.image ? 'hidden' : ''}"></i>
+                        </div>
+                        <input type="file" accept="image/*" onchange="handleAttrImage(event, this)" class="text-[10px] text-slate-400 flex-1">
+                        <input type="hidden" class="attr-base64" value="${attr.image || ''}">
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        };
 
-        function renderCmsFaqsForm(faqs) {
+        window.addNewAttractionToCms = function() {
+            window.addAttractionFormToCms();
+        };
+
+        window.handleAttrImage = function(event, inputEl) {
+            const file = event.target.files[0];
+            if (file) {
+                resizeImage(file, 600, 400, (base64) => {
+                    const container = inputEl.closest('.cms-attr-item');
+                    const img = container.querySelector('.attr-preview-img');
+                    const icon = container.querySelector('.fa-image');
+                    const hidden = container.querySelector('.attr-base64');
+                    
+                    img.src = base64;
+                    img.classList.remove('hidden');
+                    icon.classList.add('hidden');
+                    hidden.value = base64;
+                });
+            }
+        };
+
+        window.addFaqFormToCms = function(faq = {}) {
             const container = document.getElementById('cmsFaqContainer');
-            container.innerHTML = '';
-            faqs.forEach((item, index) => {
-                const html = `
-                    <div class="bg-slate-800/80 border border-slate-700 p-3 rounded-2xl space-y-2 text-xs">
-                        <input type="text" id="cmsFaqQ_${index}" value="${item.q}" placeholder="Soalan" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
-                        <textarea id="cmsFaqA_${index}" rows="2" placeholder="Jawapan" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">${item.a}</textarea>
+            const html = `
+                <div class="cms-faq-item bg-slate-800/30 p-3 rounded-xl border border-slate-700/50 flex gap-3 relative pr-10">
+                    <button onclick="this.parentElement.remove()" class="absolute top-3 right-3 text-rose-400 hover:text-rose-300 text-xs"><i class="fa-solid fa-trash"></i></button>
+                    <div class="flex-1 space-y-2">
+                        <input type="text" class="faq-q w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" value="${faq.q || ''}" placeholder="Soalan (Q)">
+                        <textarea class="faq-a w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" placeholder="Jawapan (A)">${faq.a || ''}</textarea>
                     </div>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
-        }
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        };
 
         window.addNewFaqToCms = function() {
-            if (!currentSiteContent.faqs) currentSiteContent.faqs = [];
-            currentSiteContent.faqs.push({ id: Date.now(), q: "Soalan Lazim Baharu", a: "Jawapan soalan." });
-            renderCmsFaqsForm(currentSiteContent.faqs);
+            window.addFaqFormToCms();
         };
 
         window.saveCmsChanges = async function() {
-            currentSiteContent.disabledWording = {
-                title: document.getElementById('cmsDisableTitle').value,
-                msg: document.getElementById('cmsDisableMsg').value,
-                badge: document.getElementById('cmsDisableBadge').value
-            };
-
-            currentSiteContent.phone1 = document.getElementById('cmsPhone1').value.trim();
-            currentSiteContent.phone2 = document.getElementById('cmsPhone2').value.trim();
-
-            currentSiteContent.hero = {
-                badge: document.getElementById('cmsHeroBadge').value,
-                title: document.getElementById('cmsHeroTitle').value,
-                subtitle: document.getElementById('cmsHeroSubtitle').value,
-                flyerImg: document.getElementById('cmsFlyerImg').value
-            };
-
-            // Read fleet changes
-            if (currentSiteContent.fleet) {
-                currentSiteContent.fleet.forEach((bike, index) => {
-                    const nameEl = document.getElementById(`cmsBikeName_${index}`);
-                    if (nameEl) bike.name = nameEl.value;
-                    const brandEl = document.getElementById(`cmsBikeBrand_${index}`);
-                    if (brandEl) bike.brand = brandEl.value;
-                    const ccEl = document.getElementById(`cmsBikeCC_${index}`);
-                    if (ccEl) bike.cc = ccEl.value;
-                    const tagEl = document.getElementById(`cmsBikeTag_${index}`);
-                    if (tagEl) bike.tag = tagEl.value;
-
-                    const r12 = document.getElementById(`cmsRate12_${index}`);
-                    const r24 = document.getElementById(`cmsRate24_${index}`);
-                    const r36 = document.getElementById(`cmsRate36_${index}`);
-                    const r48 = document.getElementById(`cmsRate48_${index}`);
-
-                    if (!bike.rates) bike.rates = {};
-                    if (r12) bike.rates['12 JAM'] = Number(r12.value) || 60;
-                    if (r24) bike.rates['24 JAM'] = Number(r24.value) || 80;
-                    if (r36) bike.rates['36 JAM'] = Number(r36.value) || 140;
-                    if (r48) bike.rates['48 JAM'] = Number(r48.value) || 160;
-                });
-            }
-
-            // Read attractions changes
-            if (currentSiteContent.attractions) {
-                currentSiteContent.attractions.forEach((item, index) => {
-                    const titleEl = document.getElementById(`cmsAttrTitle_${index}`);
-                    if (titleEl) item.name = titleEl.value;
-                    const descEl = document.getElementById(`cmsAttrDesc_${index}`);
-                    if (descEl) item.desc = descEl.value;
-                });
-            }
-
-            // Read FAQ changes
-            if (currentSiteContent.faqs) {
-                currentSiteContent.faqs.forEach((item, index) => {
-                    const qEl = document.getElementById(`cmsFaqQ_${index}`);
-                    if (qEl) item.q = qEl.value;
-                    const aEl = document.getElementById(`cmsFaqA_${index}`);
-                    if (aEl) item.a = aEl.value;
-                });
-            }
-
-            // Change PIN if input filled
-            const newPinEl = document.getElementById('cmsNewPin');
-            if (newPinEl && newPinEl.value.trim().length >= 4) {
-                currentSiteContent.adminPin = newPinEl.value.trim();
-                newPinEl.value = '';
-            }
-
-            // Save to Firestore
             try {
+                const btn = document.querySelector('#adminFooterPanel button');
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Menyimpan...`;
+                btn.disabled = true;
+
+                // Collect Status
+                currentSiteContent.disabledWording = {
+                    title: document.getElementById('cmsDisableTitle').value,
+                    msg: document.getElementById('cmsDisableMsg').value,
+                    badge: document.getElementById('cmsDisableBadge').value
+                };
+
+                // Collect Images
+                currentSiteContent.images = {
+                    mainLogo: document.getElementById('cmsBase64MainLogo').value,
+                    heroFlyer: document.getElementById('cmsBase64HeroFlyer').value,
+                    bookingImg: document.getElementById('cmsBase64BookingImg').value,
+                    copyrightLogo: document.getElementById('cmsBase64CopyrightLogo').value
+                };
+
+                currentSiteContent.phone1 = document.getElementById('cmsPhone1').value;
+                currentSiteContent.phone2 = document.getElementById('cmsPhone2').value;
+
+                currentSiteContent.hero = {
+                    badge: document.getElementById('cmsHeroBadge').value,
+                    title: document.getElementById('cmsHeroTitle').value,
+                    subtitle: document.getElementById('cmsHeroSubtitle').value
+                };
+
+                // PIN Change
+                const newPin = document.getElementById('cmsNewPin').value;
+                if (newPin && newPin.length >= 4) {
+                    currentSiteContent.adminPin = newPin;
+                    document.getElementById('cmsNewPin').value = '';
+                }
+
+                // Collect Fleet
+                const fleetItems = [];
+                document.querySelectorAll('.cms-fleet-item').forEach(el => {
+                    const r12 = parseInt(el.querySelector('.fleet-rate-12').value) || 0;
+                    const r24 = parseInt(el.querySelector('.fleet-rate-24').value) || 0;
+                    const r36 = parseInt(el.querySelector('.fleet-rate-36').value) || 0;
+                    const r48 = parseInt(el.querySelector('.fleet-rate-48').value) || 0;
+
+                    fleetItems.push({
+                        id: el.querySelector('.fleet-id').value,
+                        name: el.querySelector('.fleet-name').value,
+                        brand: el.querySelector('.fleet-brand').value,
+                        cc: el.querySelector('.fleet-cc').value,
+                        fuel: el.querySelector('.fleet-fuel').value,
+                        tag: el.querySelector('.fleet-tag').value,
+                        desc: el.querySelector('.fleet-desc').value,
+                        image: el.querySelector('.fleet-base64').value,
+                        isPopular: el.querySelector('.fleet-popular').checked,
+                        rates: { "12 JAM": r12, "24 JAM": r24, "36 JAM": r36, "48 JAM": r48 }
+                    });
+                });
+                currentSiteContent.fleet = fleetItems;
+
+                // Collect Attractions
+                const attrItems = [];
+                document.querySelectorAll('.cms-attr-item').forEach((el, index) => {
+                    attrItems.push({
+                        id: index + 1,
+                        name: el.querySelector('.attr-name').value,
+                        tag: el.querySelector('.attr-tag').value,
+                        desc: el.querySelector('.attr-desc').value,
+                        image: el.querySelector('.attr-base64').value
+                    });
+                });
+                currentSiteContent.attractions = attrItems;
+
+                // Collect FAQs
+                const faqItems = [];
+                document.querySelectorAll('.cms-faq-item').forEach((el, index) => {
+                    faqItems.push({
+                        id: index + 1,
+                        q: el.querySelector('.faq-q').value,
+                        a: el.querySelector('.faq-a').value
+                    });
+                });
+                currentSiteContent.faqs = faqItems;
+
+                // Save to Firestore
                 if (db) {
                     const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'config', 'siteContent');
                     await setDoc(docRef, currentSiteContent);
-                    showToast("Perubahan berjaya disimpan ke pangkalan data!");
+                    showToast("Perubahan berjaya disimpan!");
                 } else {
-                    renderSiteContent(currentSiteContent);
-                    showToast("Perubahan disimpan secara tempatan.");
+                    renderSiteContent(currentSiteContent); // Update local UI if no DB
+                    showToast("Perubahan digunakan (Local Mode sahaja)");
                 }
-                closeAdminModal();
+
+                btn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Simpan Semua Perubahan`;
+                btn.disabled = false;
+
             } catch (err) {
-                console.error("Gagal menyimpan perubahan CMS:", err);
+                console.error("Error saving CMS:", err);
                 showToast("Gagal menyimpan perubahan!", true);
+                const btn = document.querySelector('#adminFooterPanel button');
+                btn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Simpan Semua Perubahan`;
+                btn.disabled = false;
             }
         };
 
-        // Load customer bookings function
+        // Bookings Logic
         window.loadCustomerBookings = function() {
+            // Firestore syncs automatically via onSnapshot, but this is a manual trigger visual
+            const btn = document.querySelector('button[title="Refresh Data"] i');
+            if (btn) {
+                btn.classList.add('fa-spin');
+                setTimeout(() => btn.classList.remove('fa-spin'), 1000);
+            }
             filterBookingsTable();
         };
 
         window.filterBookingsTable = function() {
-            const searchVal = (document.getElementById('bookingSearchInput')?.value || '').toLowerCase();
-            const statusVal = document.getElementById('bookingStatusFilter')?.value || 'ALL';
-            const dateVal = document.getElementById('bookingDateFilter')?.value || '';
+            const searchQ = document.getElementById('bookingSearchInput').value.toLowerCase();
+            const statusQ = document.getElementById('bookingStatusFilter').value;
+            const dateQ = document.getElementById('bookingDateFilter').value; // YYYY-MM-DD
 
-            filteredBookingsList = currentBookings.filter(b => {
-                const matchesSearch = !searchVal || 
-                    (b.custName && b.custName.toLowerCase().includes(searchVal)) ||
-                    (b.custPhone && b.custPhone.toLowerCase().includes(searchVal)) ||
-                    (b.modelName && b.modelName.toLowerCase().includes(searchVal));
-
-                const matchesStatus = statusVal === 'ALL' || b.status === statusVal;
-                const matchesDate = !dateVal || (b.startDate && b.startDate === dateVal);
-
-                return matchesSearch && matchesStatus && matchesDate;
-            });
-
-            renderBookingsTable();
-        };
-
-        function renderBookingsTable() {
-            const tbody = document.getElementById('bookingsTableBody');
-            if (!tbody) return;
-
-            // Calculate stats
-            let totalRevenue = 0;
+            let totalRev = 0;
             let pendingCount = 0;
             let completedCount = 0;
 
-            currentBookings.forEach(b => {
-                totalRevenue += Number(b.finalTotal) || 0;
-                if (b.status === 'Pending' || !b.status) pendingCount++;
-                if (b.status === 'Selesai' || b.status === 'Disahkan') completedCount++;
+            filteredBookingsList = currentBookings.filter(b => {
+                let match = true;
+                
+                if (searchQ) {
+                    const t = `${b.custName} ${b.custPhone} ${b.modelName}`.toLowerCase();
+                    if (!t.includes(searchQ)) match = false;
+                }
+                
+                if (statusQ !== 'ALL' && b.status !== statusQ) match = false;
+                
+                // Very basic date filtering
+                if (dateQ) {
+                    const parts = dateQ.split('-'); // 2024-05-12
+                    const formatted = `${parts[2]}/${parts[1]}/${parts[0]}`; 
+                    if (b.createdAt && !b.createdAt.includes(formatted) && !b.createdAt.includes(dateQ)) {
+                        match = false;
+                    }
+                }
+
+                return match;
             });
 
-            document.getElementById('statTotalBookings').innerText = currentBookings.length;
-            document.getElementById('statTotalRevenue').innerText = `RM ${totalRevenue}`;
-            document.getElementById('statPendingCount').innerText = pendingCount;
-            document.getElementById('statCompletedCount').innerText = completedCount;
+            const tbody = document.getElementById('bookingsTableBody');
+            tbody.innerHTML = '';
 
             if (filteredBookingsList.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="7" class="p-6 text-center text-slate-500">
-                            Tiada rekod tempahan dijumpai.
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500">Tiada rekod dijumpai.</td></tr>`;
+            } else {
+                filteredBookingsList.forEach(b => {
+                    if (b.status === 'Selesai' || b.status === 'Disahkan') totalRev += (b.finalTotal || 0);
+                    if (b.status === 'Pending') pendingCount++;
+                    if (b.status === 'Selesai') completedCount++;
+
+                    let statusClass = "bg-slate-700 text-slate-300";
+                    if (b.status === 'Pending') statusClass = "bg-amber-500/20 text-amber-400 border border-amber-500/30";
+                    if (b.status === 'Disahkan') statusClass = "bg-sky-500/20 text-sky-400 border border-sky-500/30";
+                    if (b.status === 'Selesai') statusClass = "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                    if (b.status === 'Batal') statusClass = "bg-rose-500/20 text-rose-400 border border-rose-500/30";
+
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-800/50 transition-colors";
+                    tr.innerHTML = `
+                        <td class="p-3 whitespace-nowrap">${b.createdAt || '-'}</td>
+                        <td class="p-3">
+                            <div class="font-bold text-white">${b.custName || '-'}</div>
+                            <div class="text-[10px] text-emerald-400"><a href="https://wa.me/${(b.custPhone || '').replace(/\D/g, '')}" target="_blank"><i class="fa-brands fa-whatsapp"></i> ${b.custPhone}</a></div>
                         </td>
-                    </tr>
-                `;
-                return;
+                        <td class="p-3">
+                            <div class="font-semibold text-strawberry-400">${b.modelName || '-'}</div>
+                            <div class="text-[10px]">${b.selectedDuration || '-'}</div>
+                        </td>
+                        <td class="p-3 text-[10px]">
+                            <div><i class="fa-solid fa-calendar-day"></i> ${b.startDate} @ ${b.pickupTime}</div>
+                            <div class="truncate w-32" title="${b.pickupLocation}"><i class="fa-solid fa-location-dot"></i> ${b.pickupLocation}</div>
+                        </td>
+                        <td class="p-3 font-mono font-bold text-white">RM ${b.finalTotal || 0}</td>
+                        <td class="p-3">
+                            <select onchange="updateBookingStatus('${b.id}', this.value)" class="text-[10px] font-bold px-2 py-1 rounded-md outline-none cursor-pointer ${statusClass}">
+                                <option value="Pending" ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                <option value="Disahkan" ${b.status === 'Disahkan' ? 'selected' : ''}>Disahkan</option>
+                                <option value="Selesai" ${b.status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+                                <option value="Batal" ${b.status === 'Batal' ? 'selected' : ''}>Batal</option>
+                            </select>
+                        </td>
+                        <td class="p-3 text-right">
+                            <button onclick="deleteBooking('${b.id}')" class="text-rose-400 hover:text-white p-1 rounded hover:bg-rose-500 transition-colors" title="Padam Rekod">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
             }
 
-            tbody.innerHTML = '';
-            filteredBookingsList.forEach(b => {
-                let badgeClass = 'bg-amber-500/20 text-amber-400 border-amber-500/30';
-                if (b.status === 'Disahkan') badgeClass = 'bg-sky-500/20 text-sky-400 border-sky-500/30';
-                if (b.status === 'Selesai') badgeClass = 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-                if (b.status === 'Batal') badgeClass = 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+            document.getElementById('statTotalBookings').innerText = currentBookings.length; 
+            document.getElementById('statTotalRevenue').innerText = `RM ${totalRev}`;
+            document.getElementById('statPendingCount').innerText = pendingCount;
+            document.getElementById('statCompletedCount').innerText = completedCount;
+        };
 
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-slate-800/40 transition-colors';
-                tr.innerHTML = `
-                    <td class="p-3">
-                        <div class="font-bold text-white">${b.startDate || 'N/A'}</div>
-                        <div class="text-[10px] text-slate-400">${b.pickupTime || ''}</div>
-                    </td>
-                    <td class="p-3">
-                        <div class="font-bold text-white">${b.custName || 'Tanpa Nama'}</div>
-                        <a href="https://wa.me/${b.custPhone?.replace(/\D/g,'')}" target="_blank" class="text-[10px] text-emerald-400 hover:underline flex items-center gap-1">
-                            <i class="fa-brands fa-whatsapp"></i> ${b.custPhone || ''}
-                        </a>
-                    </td>
-                    <td class="p-3">
-                        <div class="font-semibold text-strawberry-400">${b.modelName || ''}</div>
-                        <div class="text-[10px] text-slate-400">${b.selectedDuration || ''}</div>
-                    </td>
-                    <td class="p-3 max-w-[150px] truncate" title="${b.pickupLocation}">
-                        ${b.pickupLocation || ''}
-                    </td>
-                    <td class="p-3">
-                        <div class="font-black text-white">RM ${b.finalTotal || '0'}</div>
-                    </td>
-                    <td class="p-3">
-                        <span class="px-2 py-1 rounded text-[10px] font-bold ${badgeClass}">${b.status || 'Pending'}</span>
-                    </td>
-                    <td class="p-3 text-right">
-                        <!-- Action buttons reserved -->
-                    </td>
+        window.updateBookingStatus = async function(docId, newStatus) {
+            if (db) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'bookings', docId);
+                    await updateDoc(docRef, { status: newStatus });
+                    showToast(`Status ditukar kepada ${newStatus}`);
+                } catch (err) {
+                    showToast("Gagal kemaskini status", true);
+                }
+            } else {
+                const idx = currentBookings.findIndex(b => b.id === docId);
+                if (idx > -1) currentBookings[idx].status = newStatus;
+                filterBookingsTable();
+            }
+        };
+
+        window.deleteBooking = async function(docId) {
+            if (confirm("Adakah anda pasti mahu memadam rekod ini secara kekal?")) {
+                if (db) {
+                    try {
+                        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'bookings', docId);
+                        await deleteDoc(docRef);
+                        showToast("Rekod dipadam");
+                    } catch (err) {
+                        showToast("Gagal padam rekod", true);
+                    }
+                } else {
+                    currentBookings = currentBookings.filter(b => b.id !== docId);
+                    filterBookingsTable();
+                }
+            }
+        };
+
+        window.printFilteredBookings = function() {
+            const printArea = document.getElementById('printableContent');
+            const now = new Date().toLocaleString('ms-MY');
+            
+            let html = `
+                <div style="font-family: sans-serif;">
+                    <h2 style="text-align:center; color: #e11d48; margin-bottom: 5px;">LAPORAN TEMPAHAN - OPPA STRAWBERRY RENTAL</h2>
+                    <p style="text-align:center; font-size: 12px; color: #666; margin-top:0;">Tarikh Cetakan: ${now}</p>
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ccc;">
+                    
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: left;">
+                        <thead>
+                            <tr style="background-color: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                                <th style="padding: 8px; border: 1px solid #e2e8f0;">Tarikh Dicipta</th>
+                                <th style="padding: 8px; border: 1px solid #e2e8f0;">Nama Pelanggan</th>
+                                <th style="padding: 8px; border: 1px solid #e2e8f0;">No. Tel</th>
+                                <th style="padding: 8px; border: 1px solid #e2e8f0;">Model Moto (Tempoh)</th>
+                                <th style="padding: 8px; border: 1px solid #e2e8f0;">Jumlah</th>
+                                <th style="padding: 8px; border: 1px solid #e2e8f0;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            if(filteredBookingsList.length === 0) {
+                html += `<tr><td colspan="6" style="padding: 10px; text-align:center;">Tiada rekod.</td></tr>`;
+            } else {
+                let total = 0;
+                filteredBookingsList.forEach(b => {
+                    if (b.status === 'Selesai' || b.status === 'Disahkan') total += (b.finalTotal || 0);
+                    html += `
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; border: 1px solid #e2e8f0;">${b.createdAt || '-'}</td>
+                            <td style="padding: 8px; border: 1px solid #e2e8f0;">${b.custName || '-'}</td>
+                            <td style="padding: 8px; border: 1px solid #e2e8f0;">${b.custPhone || '-'}</td>
+                            <td style="padding: 8px; border: 1px solid #e2e8f0;">${b.modelName} <br><small>(${b.selectedDuration})</small></td>
+                            <td style="padding: 8px; border: 1px solid #e2e8f0;">RM ${b.finalTotal || 0}</td>
+                            <td style="padding: 8px; border: 1px solid #e2e8f0;">${b.status}</td>
+                        </tr>
+                    `;
+                });
+                html += `
+                        <tr style="background-color: #f8fafc; font-weight: bold;">
+                            <td colspan="4" style="padding: 10px; text-align: right; border: 1px solid #e2e8f0;">JUMLAH HASIL (SELESAI/SAH):</td>
+                            <td colspan="2" style="padding: 10px; border: 1px solid #e2e8f0; color: #15803d;">RM ${total}</td>
+                        </tr>
                 `;
-                tbody.appendChild(tr);
-            });
-        }
-        
-        // Initialize the logic when document loads
+            }
+
+            html += `
+                        </tbody>
+                    </table>
+                    <p style="text-align:center; font-size: 10px; color: #999; margin-top: 30px;">Oppa Strawberry Rental Admin System</p>
+                </div>
+            `;
+
+            printArea.innerHTML = html;
+            window.print();
+        };
+
+        // Init App On Load
         document.addEventListener('DOMContentLoaded', () => {
             initFirebaseBackend();
         });
